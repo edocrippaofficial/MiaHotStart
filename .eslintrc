@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "@mia-platform/eslint-config-mia"
+  ],
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  }
+}

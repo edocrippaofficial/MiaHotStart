@@ -1,0 +1,24 @@
+{
+  "name": "fastifymiaintegrations",
+  "version": "0.1.0",
+  "description": "The Mia Platform Fastify plugin",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "Fastify",
+    "MiaPlatform"
+  ],
+  "author": "Edoardo Crippa",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@mia-platform/eslint-config-mia": "^3.0.0",
+    "eslint": "^8.56.0",
+    "fastify": "^4.25.2"
+  },
+  "dependencies": {
+    "@fastify/env": "^4.3.0",
+    "fastify-plugin": "^4.5.1"
+  }
+}
