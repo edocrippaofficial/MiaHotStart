@@ -11,10 +11,14 @@ const schema = {
 }
 
 async function setupFastify() {
-  const fastify = Fastify()
+  const fastify = Fastify({
+    logger: true,
+  })
 
   await fastify.register(fastifyMia, {
     envSchema: schema,
+    disableFastifySwagger: false,
+    disableFastifySwaggerUI: false,
   })
 
   fastify.get('/', async(request, reply) => {

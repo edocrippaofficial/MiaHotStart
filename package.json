@@ -23,6 +23,7 @@
   "dependencies": {
     "@fastify/env": "^4.3.0",
     "@fastify/swagger": "^8.12.2",
-    "fastify-plugin": "^4.5.1"
+    "fastify-plugin": "^4.5.1",
+    "@scalar/fastify-api-reference": "^1.12.7"
   }
 }

@@ -6,11 +6,13 @@ const assert = require('node:assert/strict')
 const fastify = require('fastify')
 const fastifyMia = require('../../src')
 
-async function setupFastify() {
+async function setupFastify({ disableFastifySwagger = false, disableFastifySwaggerUI = false } = {}) {
   const server = fastify()
   server.register(fastifyMia, {
     envSchema: { type: 'object' },
     fastifySwaggerOptions: { host: 'localhost' },
+    disableFastifySwagger,
+    disableFastifySwaggerUI,
   })
 
   return server
@@ -22,7 +24,7 @@ describe('Fastify Swagger', () => {
     assert.ok(fastifyInstance.hasPlugin('@fastify/swagger'), `The plugin @fastify/swagger is not registered correctly`)
   })
 
-  it('exposes correctly the swagger', async() => {
+  it('creates correctly the swagger', async() => {
     const fastifyInstance = await setupFastify()
     await fastifyInstance.ready()
     const swagger = fastifyInstance.swagger()
@@ -31,5 +33,61 @@ describe('Fastify Swagger', () => {
       'fastifymiaintegrations',
       `The swagger info title is not set correctly`
     )
+  })
+
+  it('exposes correctly the json openapi route', async() => {
+    const fastifyInstance = await setupFastify()
+    await fastifyInstance.ready()
+
+    const response = await fastifyInstance.inject({
+      method: 'GET',
+      url: '/documentation/json',
+    })
+
+    assert.equal(response.statusCode, 200)
+    assert.equal(
+      JSON.parse(response.payload).info.title,
+      'fastifymiaintegrations',
+      `The received json is not correct`
+    )
+  })
+
+  it('exposes correctly the UI', async() => {
+    const fastifyInstance = await setupFastify()
+    await fastifyInstance.ready()
+
+    const response = await fastifyInstance.inject({
+      method: 'GET',
+      url: '/documentation',
+    })
+
+    assert.equal(response.statusCode, 200)
+    assert.equal(
+      response.headers['content-type'],
+      'text/html; charset=utf-8',
+      `The received HTML is not correct`
+    )
+  })
+
+  it('has correctly skipped the plugin if the option `disableFastifySwagger` is true', async() => {
+    const fastifyInstance = await setupFastify({
+      disableFastifySwagger: true,
+    })
+    assert.ok(!fastifyInstance.hasPlugin('@fastify/swagger'), `The plugin @fastify/swagger is not skipped`)
+  })
+
+  it('has correctly skipped the UI plugin if the option `disableFastifySwaggerUI` is true', async() => {
+    const fastifyInstance = await setupFastify({
+      disableFastifySwaggerUI: true,
+    })
+    assert.ok(fastifyInstance.hasPlugin('@fastify/swagger'), `The plugin @fastify/swagger is not registered correctly`)
+    await fastifyInstance.ready()
+
+    const response = await fastifyInstance.inject({
+      method: 'GET',
+      url: '/documentation',
+    })
+
+    assert.equal(response.statusCode, 404)
   })
 })
