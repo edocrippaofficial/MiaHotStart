@@ -8,6 +8,7 @@ const { setupFastify } = require('../server')
 describe('Example', () => {
   const customEnvs = {
     FOO: 'BAR',
+    HTTP_PORT: 3000,
   }
 
   let originalEnvs

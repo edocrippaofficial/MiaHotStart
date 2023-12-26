@@ -6,6 +6,7 @@ const fastifyMia = require('../src')
 const schema = {
   type: 'object',
   properties: {
+    HTTP_PORT: { type: 'number', default: 3000 },
     FOO: { type: 'string' },
   },
 }

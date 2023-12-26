@@ -36,7 +36,7 @@ module.exports = async function swagger(fastify, opts) {
   }
 
   await fastify.register(scalarUI, {
-    routePrefix: '/documentation',
+    routePrefix: '/documentation/',
     configuration: {
       spec: {
         content: () => fastify.swagger(),
