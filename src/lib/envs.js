@@ -2,8 +2,11 @@
 
 const fastifyEnv = require('@fastify/env')
 
-module.exports = function envs(fastify, opts) {
-  if (opts.enableEnvSchema) {
-    fastify.register(fastifyEnv, opts.envSchemaOptions)
-  }
+module.exports = async function envs(fastify, opts) {
+  await fastify.register(fastifyEnv, {
+    schema: opts.envSchema,
+    ...opts.envSchemaOptions,
+  })
+
+  fastify.decorateRequest('config', fastify.config)
 }

@@ -9,9 +9,8 @@ const fastifyMia = require('../src/index')
 async function setupFastify(schema) {
   const server = fastify()
   server.register(fastifyMia, {
-    enableEnvSchema: true,
+    envSchema: schema,
     envSchemaOptions: {
-      schema,
       dotenv: {
         path: `${__dirname}/.test.env`,
       },
@@ -32,18 +31,6 @@ describe('Fastify Env', () => {
   it('has correctly registered the plugin', async() => {
     const fastifyInstance = await setupFastify(schema)
     assert.ok(fastifyInstance.hasPlugin('@fastify/env'), `The plugin @fastify/env is not registered correctly`)
-  })
-
-  it('has correctly skipped the plugin if the `enableEnvSchema` key is falsy', async() => {
-    const fastifyInstance = fastify()
-    fastifyInstance.register(fastifyMia, {
-      enableEnvSchema: false,
-    })
-    assert.equal(
-      fastifyInstance.hasPlugin('@fastify/env'),
-      false,
-      `The plugin @fastify/env is not skipped`
-    )
   })
 
   it('has correctly parsed the schema', async() => {

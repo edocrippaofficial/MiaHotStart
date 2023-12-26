@@ -8,10 +8,8 @@ const {
   registerFastifyEnvs,
 } = require('./lib')
 
-function plugin(fastify, opts, done) {
-  registerFastifyEnvs(fastify, opts)
-
-  done()
+async function plugin(fastify, opts) {
+  await registerFastifyEnvs(fastify, opts)
 }
 
 module.exports = fp(plugin, {
