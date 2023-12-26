@@ -3,9 +3,9 @@
 const { describe, it, before, after } = require('node:test')
 const assert = require('node:assert/strict')
 
-const { setupFastify } = require('../index')
+const { setupFastify } = require('../server')
 
-describe('fastify-server', () => {
+describe('Example', () => {
   const customEnvs = {
     FOO: 'BAR',
   }

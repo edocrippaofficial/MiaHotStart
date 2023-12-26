@@ -8,5 +8,7 @@ module.exports = async function envs(fastify, opts) {
     ...opts.envSchemaOptions,
   })
 
-  fastify.decorateRequest('config', fastify.config)
+  fastify.addHook('onRequest', async(request) => {
+    request.config = fastify.config
+  })
 }

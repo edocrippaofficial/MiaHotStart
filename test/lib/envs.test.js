@@ -4,7 +4,7 @@ const { describe, it } = require('node:test')
 const assert = require('node:assert/strict')
 
 const fastify = require('fastify')
-const fastifyMia = require('../src/index')
+const fastifyMia = require('../../src')
 
 async function setupFastify(schema) {
   const server = fastify()
@@ -12,7 +12,7 @@ async function setupFastify(schema) {
     envSchema: schema,
     envSchemaOptions: {
       dotenv: {
-        path: `${__dirname}/.test.env`,
+        path: `${__dirname}/../.test.env`,
       },
     },
   })
@@ -57,6 +57,26 @@ describe('Fastify Env', () => {
         return error.message.includes('ENV_NOT_LOADED')
       },
       `The required env ENV_NOT_LOADED is not handled correctly`
+    )
+  })
+
+  it('has correctly decorated the request instance', async() => {
+    const fastifyInstance = await setupFastify(schema)
+
+    let requestConfig
+    fastifyInstance.get('/', (request) => {
+      requestConfig = request.config
+      return 'ok'
+    })
+    await fastifyInstance.inject({
+      method: 'GET',
+      url: '/',
+    })
+
+    assert.equal(
+      requestConfig.FOO,
+      'BAR',
+      `The env is not correctly loaded`
     )
   })
 })

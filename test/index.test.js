@@ -9,7 +9,9 @@ const { pluginName } = require('../src/index')
 
 async function setupFastify() {
   const server = fastify()
-  server.register(fastifyMia, { envSchema: {} })
+
+  const envSchema = { type: 'object', properties: {} }
+  server.register(fastifyMia, { envSchema })
 
   return server
 }
