@@ -11,7 +11,7 @@ const schema = {
   properties: {
     HTTP_PORT: { type: 'number', default: 3000 },
     LOG_LEVEL: { type: 'string', default: 'trace' },
-    FOO: { type: 'string', default: 'world' },
+    FOO: { type: 'string', default: 'bar' },
   },
 }
 

@@ -14,6 +14,7 @@ module.exports = {
       properties: {
         hello: { type: 'string', example: 'world' },
       },
+      additionalProperties: true,
     },
     '4xx': {
       type: 'object',

@@ -10,4 +10,5 @@ module.exports = {
   pluginTimeout: 30000,
   // virtually disable the max body size limit
   bodyLimit: Number.MAX_SAFE_INTEGER,
+  disableRequestLogging: true,
 }

@@ -5,7 +5,7 @@ const pino = require('pino')
 module.exports = {
   level: 'info',
   redact: defaultRedactionRules(),
-  timestamp: timestampFunction,
+  timestamp: true,
   serializers: {
     error: pino.stdSerializers.err,
   },
@@ -25,8 +25,4 @@ function defaultRedactionRules() {
     ],
     censor: '[REDACTED]',
   }
-}
-
-function timestampFunction() {
-  return `,"time":${Date.now()}`
 }
