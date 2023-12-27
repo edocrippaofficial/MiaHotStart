@@ -17,6 +17,9 @@ const {
 } = require('./config')
 
 async function plugin(fastify, opts) {
+  // TODO
+  //  Check opts schema with Ajv
+
   await registerFastifyEnvs(fastify, opts)
   await registerFastifySwagger(fastify, opts)
   await registerLogger(fastify, opts)
