@@ -8,6 +8,7 @@ const {
   registerFastifyEnvs,
   registerFastifySwagger,
   registerLogger,
+  registerMetrics,
 } = require('./lib')
 
 const {
@@ -19,6 +20,7 @@ async function plugin(fastify, opts) {
   await registerFastifyEnvs(fastify, opts)
   await registerFastifySwagger(fastify, opts)
   await registerLogger(fastify, opts)
+  await registerMetrics(fastify, opts)
 }
 
 module.exports = fp(plugin, {

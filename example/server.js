@@ -25,7 +25,7 @@ async function setupFastify() {
     envSchema: schema,
     envSchemaOptions: {},
     logLevelKey: 'LOG_LEVEL',
-    disableFastifySwagger: false,
+    disableSwagger: false,
     disableRequestLogging: false,
   })
 

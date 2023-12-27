@@ -7,7 +7,7 @@ const fastifySwagger = require('@fastify/swagger')
 const fastifySwaggerUI = require('@fastify/swagger-ui')
 
 module.exports = async function swagger(fastify, opts) {
-  if (opts.disableFastifySwagger) {
+  if (opts.disableSwagger) {
     return
   }
 

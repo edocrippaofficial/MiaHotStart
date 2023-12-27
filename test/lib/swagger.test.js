@@ -6,12 +6,12 @@ const assert = require('node:assert/strict')
 const fastify = require('fastify')
 const fastifyMia = require('../../src')
 
-async function setupFastify({ disableFastifySwagger = false } = {}) {
+async function setupFastify({ disableSwagger = false } = {}) {
   const server = fastify()
   server.register(fastifyMia, {
     envSchema: { type: 'object' },
     fastifySwaggerOptions: { host: 'localhost' },
-    disableFastifySwagger,
+    disableSwagger,
   })
 
   return server
@@ -69,9 +69,9 @@ describe('Fastify Swagger', () => {
     )
   })
 
-  it('has correctly skipped the plugin if the option `disableFastifySwagger` is true', async() => {
+  it('has correctly skipped the plugin if the option `disableSwagger` is true', async() => {
     const fastifyInstance = await setupFastify({
-      disableFastifySwagger: true,
+      disableSwagger: true,
     })
     assert.ok(!fastifyInstance.hasPlugin('@fastify/swagger'), `The plugin @fastify/swagger is not skipped`)
   })
