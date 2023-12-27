@@ -1,6 +1,6 @@
 'use strict'
 
-const { describe, it, before, after } = require('node:test')
+const { describe, it, before } = require('node:test')
 const assert = require('node:assert/strict')
 
 const { setupFastify } = require('../server')
@@ -11,16 +11,11 @@ describe('Example', () => {
     HTTP_PORT: 3000,
   }
 
-  let originalEnvs
   before(async() => {
-    originalEnvs = JSON.stringify(process.env)
     process.env = {
       ...process.env,
       ...customEnvs,
     }
-  })
-  after(async() => {
-    process.env = JSON.parse(originalEnvs)
   })
 
   it('should start the server', async() => {
@@ -37,7 +32,7 @@ describe('Example', () => {
     )
     assert.deepEqual(
       JSON.parse(response.payload),
-      { hello: customEnvs.FOO },
+      { 'foo': customEnvs.FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }] },
       `The response body in not the one expected`
     )
   })
