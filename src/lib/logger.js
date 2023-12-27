@@ -58,7 +58,7 @@ function logIncomingRequest(req, reply, next) {
 
 // log with level trace only the body response for json replies
 function logOutgoingReply(req, reply, payload, next) {
-  if (reply.getHeader('content-type').includes('application/json')) {
+  if (reply.getHeader('content-type')?.includes('application/json')) {
     const { statusCode } = reply
     req.log.trace({
       statusCode,

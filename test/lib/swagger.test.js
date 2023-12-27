@@ -6,13 +6,12 @@ const assert = require('node:assert/strict')
 const fastify = require('fastify')
 const fastifyMia = require('../../src')
 
-async function setupFastify({ disableFastifySwagger = false, disableFastifySwaggerUI = false } = {}) {
+async function setupFastify({ disableFastifySwagger = false } = {}) {
   const server = fastify()
   server.register(fastifyMia, {
     envSchema: { type: 'object' },
     fastifySwaggerOptions: { host: 'localhost' },
     disableFastifySwagger,
-    disableFastifySwaggerUI,
   })
 
   return server
@@ -22,6 +21,7 @@ describe('Fastify Swagger', () => {
   it('has correctly registered the plugin', async() => {
     const fastifyInstance = await setupFastify()
     assert.ok(fastifyInstance.hasPlugin('@fastify/swagger'), `The plugin @fastify/swagger is not registered correctly`)
+    assert.ok(fastifyInstance.hasPlugin('@fastify/swagger-ui'), `The plugin @fastify/swagger-ui is not registered correctly`)
   })
 
   it('creates correctly the swagger', async() => {
@@ -58,7 +58,7 @@ describe('Fastify Swagger', () => {
 
     const response = await fastifyInstance.inject({
       method: 'GET',
-      url: '/documentation/',
+      url: '/documentation/static/index.html',
     })
 
     assert.equal(response.statusCode, 200)
@@ -74,20 +74,5 @@ describe('Fastify Swagger', () => {
       disableFastifySwagger: true,
     })
     assert.ok(!fastifyInstance.hasPlugin('@fastify/swagger'), `The plugin @fastify/swagger is not skipped`)
-  })
-
-  it('has correctly skipped the UI plugin if the option `disableFastifySwaggerUI` is true', async() => {
-    const fastifyInstance = await setupFastify({
-      disableFastifySwaggerUI: true,
-    })
-    assert.ok(fastifyInstance.hasPlugin('@fastify/swagger'), `The plugin @fastify/swagger is not registered correctly`)
-    await fastifyInstance.ready()
-
-    const response = await fastifyInstance.inject({
-      method: 'GET',
-      url: '/documentation/',
-    })
-
-    assert.equal(response.statusCode, 404)
   })
 })
