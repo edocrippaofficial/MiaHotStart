@@ -12,6 +12,7 @@ const {
 
 const {
   defaultLogger,
+  defaultFastifyOptions,
 } = require('./config')
 
 async function plugin(fastify, opts) {
@@ -26,4 +27,5 @@ module.exports = fp(plugin, {
 })
 
 module.exports.pluginName = pluginName
+module.exports.defaultFastifyOptions = defaultFastifyOptions
 module.exports.defaultLogger = defaultLogger
