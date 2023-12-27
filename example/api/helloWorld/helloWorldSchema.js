@@ -5,7 +5,7 @@ module.exports = {
   querystring: {
     type: 'object',
     properties: {
-      name: { type: 'string' },
+      name: { type: 'string', description: 'Your name' },
     },
   },
   response: {

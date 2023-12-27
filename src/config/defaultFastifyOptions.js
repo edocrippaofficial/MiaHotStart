@@ -1,4 +1,5 @@
 'use strict'
+
 // Very opinionated default options for the Fastify server instance
 module.exports = {
   return503OnClosing: false,
