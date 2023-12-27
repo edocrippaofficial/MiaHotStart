@@ -26,8 +26,17 @@ async function setupFastify() {
     envSchemaOptions: {},
     logLevelKey: 'LOG_LEVEL',
     disableSwagger: false,
+    disableMetrics: false,
     disableRequestLogging: false,
   })
+
+  const promClient = fastify.metrics.client
+  const customMetric = new promClient.Counter({
+    name: 'custom_metric',
+    help: 'This is a custom metric',
+    labelNames: ['foo'],
+  })
+  customMetric.labels({ foo: 'bar' }).inc(10)
 
   fastify.register(helloWorldRoute)
 

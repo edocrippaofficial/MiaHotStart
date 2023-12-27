@@ -56,6 +56,27 @@ describe('Fastify Metrics', () => {
     assert.ok(!fastifyInstance.hasPlugin('fastify-metrics'), `The plugin fastify-metrics is not skipped`)
   })
 
-  // TODO
-  it.todo('lets you define a custom metric')
+  it('lets you define a custom metric', async() => {
+    const fastifyInstance = await setupFastify()
+
+    const promClient = fastifyInstance.metrics.client
+    const customMetric = new promClient.Counter({
+      name: 'custom_metric',
+      help: 'This is a custom metric',
+      labelNames: ['foo'],
+    })
+
+    customMetric.labels({ foo: 'bar' }).inc(10)
+
+    const response = await fastifyInstance.inject({
+      method: 'GET',
+      url: '/-/metrics',
+    })
+
+    const lines = response.payload.split('\n')
+    assert.ok(
+      lines.includes('custom_metric{foo="bar"} 10'),
+      `The custom metric is not registered correctly`
+    )
+  })
 })
