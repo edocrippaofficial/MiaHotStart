@@ -2,20 +2,13 @@
 
 const { describe, it, before } = require('node:test')
 const assert = require('node:assert/strict')
+const { testEnvs, loadTestEnvs } = require('./testUtils')
 
 const { setupFastify } = require('../server')
 
 describe('Example', () => {
-  const customEnvs = {
-    FOO: 'BAR',
-    HTTP_PORT: 3000,
-  }
-
   before(async() => {
-    process.env = {
-      ...process.env,
-      ...customEnvs,
-    }
+    loadTestEnvs()
   })
 
   it('should start the server', async() => {
@@ -32,7 +25,7 @@ describe('Example', () => {
     )
     assert.deepEqual(
       JSON.parse(response.payload),
-      { 'foo': customEnvs.FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }] },
+      { 'foo': testEnvs.FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }] },
       `The response body in not the one expected`
     )
   })

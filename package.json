@@ -27,5 +27,8 @@
     "fastify-metrics": "^10.5.0",
     "fastify-plugin": "^4.5.1",
     "pino": "^8.17.2"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
