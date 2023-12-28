@@ -28,6 +28,7 @@ async function setupFastify() {
     disableSwagger: false,
     disableMetrics: false,
     disableRequestLogging: false,
+    disableStatusRoutes: false,
     customReadyRouteHandler: undefined,
     customHealthzRouteHandler: undefined,
     customCheckUpRouteHandler: undefined,

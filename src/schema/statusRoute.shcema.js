@@ -13,7 +13,7 @@ module.exports = {
         },
         status: {
           type: 'string',
-          description: 'It"s status, it must be OK',
+          description: 'It\'s status, it must be OK',
           enum: ['OK'],
         },
         version: {
@@ -21,6 +21,7 @@ module.exports = {
           description: 'The version of the service that is running expressed as semver',
         },
       },
+      required: ['name', 'status', 'version'],
     },
     503: {
       type: 'object',
@@ -32,7 +33,7 @@ module.exports = {
         },
         status: {
           type: 'string',
-          description: 'It"s status, it must be KO',
+          description: 'It\'s status, it must be KO',
           enum: ['KO'],
         },
         version: {
@@ -44,6 +45,7 @@ module.exports = {
           description: 'An optional message with an explanation of the KO response',
         },
       },
+      required: ['name', 'status', 'version'],
     },
   },
 }
