@@ -28,6 +28,9 @@ async function setupFastify() {
     disableSwagger: false,
     disableMetrics: false,
     disableRequestLogging: false,
+    customReadyRouteHandler: undefined,
+    customHealthzRouteHandler: undefined,
+    customCheckUpRouteHandler: undefined,
   })
 
   const promClient = fastify.metrics.client
