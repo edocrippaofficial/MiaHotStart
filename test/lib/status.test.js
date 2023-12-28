@@ -138,4 +138,51 @@ describe('Status Routes', () => {
     assert.equal(healthzResponse.statusCode, 404, `The healthz response code is not the one expected`)
     assert.equal(checkUpResponse.statusCode, 404, `The checkup response code is not the one expected`)
   })
+
+  it('should leave the log level if is `silent`', async() => {
+    const server = fastify({ logger: true })
+
+    const routes = []
+    server.addHook('onRoute', route => {
+      routes.push(route)
+    })
+
+    server.register(fastifyMia, {
+      envSchema: {
+        type: 'object',
+        properties: {
+          LOG_LEVEL: { type: 'string', default: 'silent' },
+        },
+      },
+      logLevelKey: 'LOG_LEVEL',
+    })
+
+    await server.ready()
+
+    const readyRoute = routes.find(route => route.url === '/-/ready' && route.method === 'GET')
+    assert.equal(readyRoute.logLevel, 'silent', `The ready route logLevel is not the one expected`)
+  })
+  it('should use the log error if is different from `silent`', async() => {
+    const server = fastify({ logger: true })
+
+    const routes = []
+    server.addHook('onRoute', route => {
+      routes.push(route)
+    })
+
+    server.register(fastifyMia, {
+      envSchema: {
+        type: 'object',
+        properties: {
+          LOG_LEVEL: { type: 'string', default: 'trace' },
+        },
+      },
+      logLevelKey: 'LOG_LEVEL',
+    })
+
+    await server.ready()
+
+    const readyRoute = routes.find(route => route.url === '/-/ready' && route.method === 'GET')
+    assert.equal(readyRoute.logLevel, 'error', `The ready route logLevel is not the one expected`)
+  })
 })

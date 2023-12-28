@@ -10,9 +10,11 @@ module.exports = async function status(fastify, opts) {
     return
   }
 
-  fastify.get('/-/ready', { schema }, opts.customReadyRouteHandler ?? statusHandler)
-  fastify.get('/-/healthz', { schema }, opts.customHealthzRouteHandler ?? statusHandler)
-  fastify.get('/-/check-up', { schema }, opts.customCheckUpRouteHandler ?? statusHandler)
+  const fastifyLogLevel = fastify.log.level
+  const logLevel = fastifyLogLevel === 'silent' ? fastifyLogLevel : 'error'
+  fastify.get('/-/ready', { schema, logLevel }, opts.customReadyRouteHandler ?? statusHandler)
+  fastify.get('/-/healthz', { schema, logLevel }, opts.customHealthzRouteHandler ?? statusHandler)
+  fastify.get('/-/check-up', { schema, logLevel }, opts.customCheckUpRouteHandler ?? statusHandler)
 }
 
 async function statusHandler(request, reply) {
