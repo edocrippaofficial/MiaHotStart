@@ -2,7 +2,7 @@
   "name": "fastifymiaintegrations",
   "version": "0.1.0",
   "description": "The Mia Platform Fastify plugin",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "npm run lint && npm run unit",
     "unit": "node --test --experimental-test-coverage test/*.test.js test/**/*.test.js",

@@ -1,8 +1,8 @@
 'use strict'
 
 const Fastify = require('fastify')
-const fastifyMia = require('../src')
-const { defaultFastifyOptions, defaultLogger } = require('../src')
+const fastifyMia = require('fastifymiaintegrations')
+const { defaultFastifyOptions, defaultLogger } = require('fastifymiaintegrations')
 
 const helloWorldRoute = require('./api/helloWorld')
 
