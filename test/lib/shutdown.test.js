@@ -17,10 +17,11 @@ async function setupFastify(gracefulShutdownSeconds) {
 }
 
 describe('Graceful Shutdown', () => {
-  const gracefulShutdownSeconds = 0.5
+  const gracefulShutdownSeconds = 0.3
 
   it('should shutdown the server after a `SIGTERM` signal', async() => {
     const server = await setupFastify()
+
     // get symbols from server
     const fastifyState = Reflect.ownKeys(server).find(s => {
       return String(s) === 'Symbol(fastify.state)'
@@ -32,7 +33,7 @@ describe('Graceful Shutdown', () => {
     // It shouldn't have called `server.close()` right after the signal was sent.
     const closeCalledBefore = server[fastifyState].closing
 
-    // Advance the clock to a bit after the timeout.
+    // Wait until a bit after the timeout.
     await new Promise((resolve) => setTimeout(resolve, (gracefulShutdownSeconds * 1000) + 100))
 
     // At this point, the timeout handler should have triggered, and `server.close()` should have been called.

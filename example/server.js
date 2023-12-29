@@ -32,6 +32,7 @@ async function setupFastify() {
     customReadyRouteHandler: undefined,
     customHealthzRouteHandler: undefined,
     customCheckUpRouteHandler: undefined,
+    gracefulShutdownSeconds: 10,
   })
 
   const promClient = fastify.metrics.client
