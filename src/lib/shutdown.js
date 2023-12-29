@@ -4,6 +4,10 @@
 const { setTimeout } = require('node:timers/promises')
 
 module.exports = async function envs(fastify, opts) {
+  if (opts.disableGracefulShutdown) {
+    return
+  }
+
   process.on('SIGTERM', () => {
     // Google Kubernetes Engine (GKE) is 10 sec,
     // so the worst case, the iptables rule will
