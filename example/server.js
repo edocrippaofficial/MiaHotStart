@@ -25,15 +25,17 @@ async function setupFastify() {
     envSchema: schema,
     envSchemaOptions: {},
     logLevelKey: 'LOG_LEVEL',
+
+    customReadyRouteHandler: undefined,
+    customHealthzRouteHandler: undefined,
+    customCheckUpRouteHandler: undefined,
+    gracefulShutdownSeconds: 10,
+
     disableSwagger: false,
     disableMetrics: false,
     disableRequestLogging: false,
     disableStatusRoutes: false,
     disableGracefulShutdown: false,
-    customReadyRouteHandler: undefined,
-    customHealthzRouteHandler: undefined,
-    customCheckUpRouteHandler: undefined,
-    gracefulShutdownSeconds: 10,
   })
 
   const promClient = fastify.metrics.client

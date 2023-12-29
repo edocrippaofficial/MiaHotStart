@@ -162,7 +162,7 @@ describe('Status Routes', () => {
     const readyRoute = routes.find(route => route.url === '/-/ready' && route.method === 'GET')
     assert.equal(readyRoute.logLevel, 'silent', `The ready route logLevel is not the one expected`)
   })
-  it('should use the log error if is different from `silent`', async() => {
+  it('should use the log level `error` if is different from `silent`', async() => {
     const server = fastify({ logger: true })
 
     const routes = []
