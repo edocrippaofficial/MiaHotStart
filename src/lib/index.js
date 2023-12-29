@@ -5,6 +5,7 @@ const registerFastifySwagger = require('./swagger')
 const registerLogger = require('./logger')
 const registerMetrics = require('./metrics')
 const registerStatus = require('./status')
+const registerShutdown = require('./shutdown')
 
 module.exports = {
   registerFastifyEnvs,
@@ -12,4 +13,5 @@ module.exports = {
   registerLogger,
   registerMetrics,
   registerStatus,
+  registerShutdown,
 }

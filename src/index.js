@@ -10,6 +10,7 @@ const {
   registerLogger,
   registerMetrics,
   registerStatus,
+  registerShutdown,
 } = require('./lib')
 
 const {
@@ -26,6 +27,7 @@ async function plugin(fastify, opts) {
   await registerLogger(fastify, opts)
   await registerMetrics(fastify, opts)
   await registerStatus(fastify, opts)
+  await registerShutdown(fastify, opts)
 }
 
 module.exports = fp(plugin, {
