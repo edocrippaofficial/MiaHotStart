@@ -3,7 +3,7 @@
 // eslint-disable-next-line no-shadow
 const { setTimeout } = require('node:timers/promises')
 
-module.exports = async function envs(fastify, opts) {
+module.exports = async function shutdown(fastify, opts) {
   if (opts.disableGracefulShutdown) {
     return
   }

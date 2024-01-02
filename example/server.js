@@ -36,6 +36,7 @@ async function setupFastify() {
     disableRequestLogging: false,
     disableStatusRoutes: false,
     disableGracefulShutdown: false,
+    disableFormBody: false,
   })
 
   const promClient = fastify.metrics.client

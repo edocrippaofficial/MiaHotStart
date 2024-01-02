@@ -2,7 +2,7 @@
 
 const fastifyMetrics = require('fastify-metrics')
 
-module.exports = async function envs(fastify, opts) {
+module.exports = async function metrics(fastify, opts) {
   if (opts.disableMetrics) {
     return
   }
