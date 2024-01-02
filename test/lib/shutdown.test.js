@@ -3,6 +3,9 @@
 const { describe, it } = require('node:test')
 const assert = require('node:assert/strict')
 
+const { promisify } = require('node:util')
+const sleep = promisify(setTimeout)
+
 const fastify = require('fastify')
 const fastifyMia = require('../../src')
 
@@ -19,6 +22,7 @@ async function setupFastify({ gracefulShutdownSeconds, disableGracefulShutdown =
 
 describe('Graceful Shutdown', () => {
   const gracefulShutdownSeconds = 0.3
+  const gracefulShutdownMilliseconds = gracefulShutdownSeconds * 1000
 
   it('should shutdown the server after a `SIGTERM` signal', async() => {
     const server = await setupFastify({ gracefulShutdownSeconds })
@@ -35,7 +39,7 @@ describe('Graceful Shutdown', () => {
     const closeCalledBefore = server[fastifyState].closing
 
     // Wait until a bit after the timeout.
-    await new Promise((resolve) => setTimeout(resolve, (gracefulShutdownSeconds * 1000) + 100))
+    await sleep(gracefulShutdownMilliseconds + 100)
 
     // At this point, the timeout handler should have triggered, and `server.close()` should have been called.
     const closeCalledAfter = server[fastifyState].closing
