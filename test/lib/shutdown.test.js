@@ -40,8 +40,8 @@ describe('Graceful Shutdown', () => {
     // At this point, the timeout handler should have triggered, and `server.close()` should have been called.
     const closeCalledAfter = server[fastifyState].closing
 
-    assert.deepEqual(closeCalledBefore, false, '`server.close()` should not have been called before the timeout')
-    assert.deepEqual(closeCalledAfter, true, '`server.close()` should have been called after the timeout')
+    assert.equal(closeCalledBefore, false, '`server.close()` should not have been called before the timeout')
+    assert.equal(closeCalledAfter, true, '`server.close()` should have been called after the timeout')
   })
 
   it('should not have the listener on the process event if the option `disableGracefulShutdown` is true', async() => {
@@ -53,6 +53,6 @@ describe('Graceful Shutdown', () => {
     await server.ready()
 
     const listeners = process.listeners('SIGTERM')
-    assert.deepEqual(listeners.length, 0, 'There should be no listeners on the SIGTERM event')
+    assert.equal(listeners.length, 0, 'There should be no listeners on the SIGTERM event')
   })
 })
