@@ -17,8 +17,8 @@ function getLogLevel(fastify, opts) {
   const logLevelFromEnv = fastify.config[opts.logLevelKey]
 
   if (!logLevelFromEnv) {
-    fastify.log.warn('No log level set, defaulting to info')
-    return 'info'
+    fastify.log.warn(`No log level set, defaulting to ${fastify.log.level}`)
+    return fastify.log.level
   }
 
   if (!isLogLevelValid(logLevelFromEnv)) {

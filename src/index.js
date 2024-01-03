@@ -15,13 +15,12 @@ const {
 } = require('./lib')
 
 const {
-  defaultLogger,
+  mergeUserOptionsWithDefaults,
   defaultFastifyOptions,
 } = require('./config')
 
-async function plugin(fastify, opts) {
-  // TODO
-  //  Check opts schema with Ajv
+async function plugin(fastify, userOptions) {
+  const opts = mergeUserOptionsWithDefaults(userOptions)
 
   await registerFastifyEnvs(fastify, opts)
   await registerFastifySwagger(fastify, opts)
@@ -39,4 +38,3 @@ module.exports = fp(plugin, {
 
 module.exports.pluginName = pluginName
 module.exports.defaultFastifyOptions = defaultFastifyOptions
-module.exports.defaultLogger = defaultLogger

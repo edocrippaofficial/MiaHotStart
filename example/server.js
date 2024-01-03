@@ -2,7 +2,7 @@
 
 const Fastify = require('fastify')
 const fastifyMia = require('fastifymiaintegrations')
-const { defaultFastifyOptions, defaultLogger } = require('fastifymiaintegrations')
+const { defaultFastifyOptions } = require('fastifymiaintegrations')
 
 const helloWorldRoute = require('./api/helloWorld')
 
@@ -18,7 +18,6 @@ const schema = {
 async function setupFastify() {
   const fastify = Fastify({
     ...defaultFastifyOptions,
-    logger: defaultLogger,
   })
 
   await fastify.register(fastifyMia, {

@@ -39,7 +39,7 @@ describe('Logger', () => {
     )
   })
 
-  it('should default the log level to info if the env is not found', async() => {
+  it('should default the log level set by the user if the env is not found', async() => {
     const schema = {
       type: 'object',
       properties: {
@@ -50,7 +50,7 @@ describe('Logger', () => {
     const fastifyInstance = await setupFastify(schema, 'MISSING_LOG_LEVEL')
     assert.equal(
       fastifyInstance.log.level,
-      `info`,
+      `trace`,
       `The logger level from the envs is not correctly set`
     )
   })

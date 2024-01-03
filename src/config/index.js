@@ -1,9 +1,9 @@
 'use strict'
 
-const defaultLogger = require('./defaultLogger')
 const defaultFastifyOptions = require('./defaultFastifyOptions')
+const mergeUserOptionsWithDefaults = require('./defaultPluginOptions')
 
 module.exports = {
-  defaultLogger,
   defaultFastifyOptions,
+  mergeUserOptionsWithDefaults,
 }
