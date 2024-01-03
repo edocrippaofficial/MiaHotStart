@@ -27,25 +27,30 @@ describe('Graceful Shutdown', () => {
   it('should shutdown the server after a `SIGTERM` signal', async() => {
     const server = await setupFastify({ gracefulShutdownSeconds })
 
-    // get symbols from server
+    // get symbol from server indicating the state
     const fastifyState = Reflect.ownKeys(server).find(s => {
       return String(s) === 'Symbol(fastify.state)'
     })
 
+    // save the timestamp of the closing event
+    let end
+    server.addHook('onClose', async() => {
+      end = Date.now()
+    })
+
+    // save the timestamp of the signal
+    const start = Date.now()
+
     // send sigterm signal
     process.kill(process.pid, 'SIGTERM')
 
-    // It shouldn't have called `server.close()` right after the signal was sent.
-    const closeCalledBefore = server[fastifyState].closing
+    // wait for the server to close
+    while (server[fastifyState].closing === false) {
+      await sleep(100)
+    }
 
-    // Wait until a bit after the timeout.
-    await sleep(gracefulShutdownMilliseconds + 100)
-
-    // At this point, the timeout handler should have triggered, and `server.close()` should have been called.
-    const closeCalledAfter = server[fastifyState].closing
-
-    assert.equal(closeCalledBefore, false, '`server.close()` should not have been called before the timeout')
-    assert.equal(closeCalledAfter, true, '`server.close()` should have been called after the timeout')
+    // the difference must be greater than the graceful shutdown timeout
+    assert.ok(end - start >= gracefulShutdownMilliseconds, 'The server should have shut down after the timeout')
   })
 
   it('should not have the listener on the process event if the option `disableGracefulShutdown` is true', async() => {
