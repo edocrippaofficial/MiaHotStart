@@ -16,9 +16,10 @@ const schema = {
 }
 
 async function setupFastify() {
-  const fastify = Fastify({
-    ...defaultFastifyOptions,
-  })
+  defaultFastifyOptions.logger.redact.paths.push('MY_SECRET')
+  const fastify = Fastify(defaultFastifyOptions)
+
+  fastify.log.info({ MY_SECRET: 'shhh' })
 
   await fastify.register(fastifyMia, {
     envSchema: schema,
