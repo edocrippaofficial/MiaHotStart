@@ -10,7 +10,7 @@ dependencies:
     version: 4.25.2
   fastifymiaintegrations:
     specifier: file:../
-    version: file:..(fastify@4.25.2)
+    version: file:..(fastify@4.25.2)(pino@8.17.2)
 
 packages:
 
@@ -659,11 +659,13 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  file:..(fastify@4.25.2):
+  file:..(fastify@4.25.2)(pino@8.17.2):
     resolution: {directory: .., type: directory}
     id: file:..
     name: fastifymiaintegrations
     engines: {node: '>=20'}
+    peerDependencies:
+      pino: '>= 8.0.0'
     dependencies:
       '@fastify/env': 4.3.0
       '@fastify/formbody': 7.4.0

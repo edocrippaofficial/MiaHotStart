@@ -30,7 +30,7 @@
     "fastify-plugin": "^4.5.1"
   },
   "peerDependencies": {
-    "pino": "8.x"
+    "pino": ">= 8.0.0"
   },
   "engines": {
     "node": ">=20"
