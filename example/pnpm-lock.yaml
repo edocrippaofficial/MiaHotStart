@@ -202,6 +202,11 @@ packages:
       ms: 2.1.2
     dev: false
 
+  /deepmerge@4.3.1:
+    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /depd@2.0.0:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
@@ -671,6 +676,7 @@ packages:
       '@fastify/formbody': 7.4.0
       '@fastify/swagger': 8.12.2
       '@fastify/swagger-ui': 2.0.1
+      deepmerge: 4.3.1
       fastify-metrics: 10.5.0(fastify@4.25.2)
       fastify-plugin: 4.5.1
       pino: 8.17.2

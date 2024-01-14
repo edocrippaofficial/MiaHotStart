@@ -12,6 +12,7 @@ const {
   registerStatus,
   registerShutdown,
   registerFormBody,
+  registerPlatformDecorators,
 } = require('./lib')
 
 const {
@@ -29,6 +30,7 @@ async function plugin(fastify, userOptions) {
   await registerStatus(fastify, opts)
   await registerShutdown(fastify, opts)
   await registerFormBody(fastify, opts)
+  await registerPlatformDecorators(fastify, opts)
 }
 
 module.exports = fp(plugin, {

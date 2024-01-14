@@ -4,7 +4,7 @@ const { describe, it, before } = require('node:test')
 const assert = require('node:assert/strict')
 const { testEnvs, loadTestEnvs } = require('./testUtils')
 
-const { setupFastify } = require('../server')
+const { setupFastify } = require('../app')
 
 describe('Example', () => {
   before(async() => {
@@ -16,6 +16,9 @@ describe('Example', () => {
     const response = await fastify.inject({
       method: 'GET',
       url: '/',
+      headers: {
+        miauserid: 'USER 1',
+      },
     })
 
     assert.equal(
@@ -25,7 +28,7 @@ describe('Example', () => {
     )
     assert.deepEqual(
       JSON.parse(response.payload),
-      { 'foo': testEnvs.FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }] },
+      { 'foo': testEnvs.FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }], user: 'USER 1' },
       `The response body in not the one expected`
     )
   })

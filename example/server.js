@@ -1,55 +1,18 @@
 'use strict'
 
-const Fastify = require('fastify')
-const fastifyMia = require('fastifymiaintegrations')
-const { defaultFastifyOptions } = require('fastifymiaintegrations')
+const { setupFastify } = require('./app')
 
-const helloWorldRoute = require('./api/helloWorld')
-
-const schema = {
-  type: 'object',
-  properties: {
-    HTTP_PORT: { type: 'number', default: 3000 },
-    LOG_LEVEL: { type: 'string', default: 'trace' },
-    FOO: { type: 'string', default: 'bar' },
-  },
+async function main() {
+  const fastify = await setupFastify()
+  fastify.log.info(`Server running with pid ${process.pid}`)
+  const port = fastify.config.HTTP_PORT || 3000
+  fastify.listen({ port }, (error) => {
+    if (error) {
+      fastify.log.error(error)
+      throw error
+    }
+  })
 }
 
-async function setupFastify() {
-  defaultFastifyOptions.logger.redact.paths.push('MY_SECRET')
-  const fastify = Fastify(defaultFastifyOptions)
+main()
 
-  fastify.log.info({ MY_SECRET: 'shhh' })
-
-  await fastify.register(fastifyMia, {
-    envSchema: schema,
-    envSchemaOptions: {},
-    logLevelKey: 'LOG_LEVEL',
-
-    customReadyRouteHandler: undefined,
-    customHealthzRouteHandler: undefined,
-    customCheckUpRouteHandler: undefined,
-    gracefulShutdownSeconds: 10,
-
-    disableSwagger: false,
-    disableMetrics: false,
-    disableRequestLogging: false,
-    disableStatusRoutes: false,
-    disableGracefulShutdown: false,
-    disableFormBody: false,
-  })
-
-  const promClient = fastify.metrics.client
-  const customMetric = new promClient.Counter({
-    name: 'custom_metric',
-    help: 'This is a custom metric',
-    labelNames: ['foo'],
-  })
-  customMetric.labels({ foo: 'bar' }).inc(10)
-
-  fastify.register(helloWorldRoute)
-
-  return fastify
-}
-
-module.exports = { setupFastify }
