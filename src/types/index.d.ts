@@ -23,12 +23,12 @@ export interface envs {
 
 declare module 'fastify' {
   interface FastifyInstance {
-    // The environment variables map defined in the schema.
+    // The environment variables map as defined in the schema.
     envs: envs
   }
 
   interface FastifyRequest {
-    // The environment variables map defined in the schema.
+    // The environment variables map as defined in the schema.
     envs: envs,
 
     getUserId: getUserId,
