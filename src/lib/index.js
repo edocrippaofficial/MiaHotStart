@@ -8,6 +8,7 @@ const registerStatus = require('./status')
 const registerShutdown = require('./shutdown')
 const registerFormBody = require('./formbody')
 const registerPlatformDecorators = require('./decorators')
+const registerHttpClient = require('./httpClient')
 
 module.exports = {
   registerFastifyEnvs,
@@ -18,4 +19,5 @@ module.exports = {
   registerShutdown,
   registerFormBody,
   registerPlatformDecorators,
+  registerHttpClient,
 }

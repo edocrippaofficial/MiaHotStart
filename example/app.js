@@ -24,7 +24,7 @@ async function setupFastify() {
   await fastify.register(fastifyMia, {
     envSchema: schema,
     envSchemaOptions: {},
-    logLevelKey: 'LOG_LEVEL',
+    logLevelEnvKey: 'LOG_LEVEL',
 
     customReadyRouteHandler: undefined,
     customHealthzRouteHandler: undefined,

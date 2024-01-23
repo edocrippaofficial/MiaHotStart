@@ -1,4 +1,6 @@
 import {FastifyPluginAsync} from 'fastify'
+import {AxiosHeaders, AxiosInstance} from "axios";
+import {AxiosRequestConfig, CreateAxiosDefaults, HeadersDefaults, RawAxiosRequestHeaders} from "axios/index";
 
 export interface getUserId {
   // Returns the User ID from the request headers.
@@ -17,6 +19,15 @@ export interface getClientType {
   (): string
 }
 
+interface CreateAxiosOptions extends Omit<AxiosRequestConfig, 'headers'> {
+  headers?: RawAxiosRequestHeaders | AxiosHeaders | Partial<HeadersDefaults>;
+}
+
+export interface getHttpClient {
+  // Returns the HTTP Client instance.
+  (baseUrl: string, baseOptions?: CreateAxiosOptions): AxiosInstance
+}
+
 export interface envs {
   [x: string]: string;
 }
@@ -31,6 +42,8 @@ declare module 'fastify' {
     // The environment variables map as defined in the schema.
     envs: envs,
 
+    getHttpClient: getHttpClient,
+
     getUserId: getUserId,
     getGroups: getGroups,
     getUserProperties: getUserProperties,
@@ -41,7 +54,7 @@ declare module 'fastify' {
 export interface PluginOptions {
   envSchema: Object,
   envSchemaOptions?: Object,
-  logLevelKey?: string,
+  logLevelEnvKey?: string,
 
   gracefulShutdownSeconds?: number,
 
@@ -55,6 +68,12 @@ export interface PluginOptions {
     userProperties?: string,
     clientType?: string,
   },
+
+  httpClient?: {
+    additionalHeadersToProxy?: string[],
+    disableDurationInterceptor?: boolean,
+    disableLogsInterceptor?: boolean,
+  }
 
   disableSwagger?: boolean,
   disableMetrics?: boolean,

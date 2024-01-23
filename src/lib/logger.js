@@ -14,7 +14,7 @@ module.exports = async function logger(fastify, opts) {
 }
 
 function getLogLevel(fastify, opts) {
-  const logLevelFromEnv = fastify.envs[opts.logLevelKey]
+  const logLevelFromEnv = fastify.envs[opts.logLevelEnvKey]
 
   if (!logLevelFromEnv) {
     fastify.log.warn(`No log level set, defaulting to ${fastify.log.level}`)

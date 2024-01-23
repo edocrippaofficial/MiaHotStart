@@ -154,7 +154,7 @@ describe('Status Routes', () => {
           LOG_LEVEL: { type: 'string', default: 'silent' },
         },
       },
-      logLevelKey: 'LOG_LEVEL',
+      logLevelEnvKey: 'LOG_LEVEL',
     })
 
     await server.ready()
@@ -177,7 +177,7 @@ describe('Status Routes', () => {
           LOG_LEVEL: { type: 'string', default: 'trace' },
         },
       },
-      logLevelKey: 'LOG_LEVEL',
+      logLevelEnvKey: 'LOG_LEVEL',
     })
 
     await server.ready()

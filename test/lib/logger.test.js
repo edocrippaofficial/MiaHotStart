@@ -7,7 +7,7 @@ const { PassThrough } = require('node:stream')
 const fastify = require('fastify')
 const fastifyMia = require('../../src')
 
-async function setupFastify(schema, logLevelKey) {
+async function setupFastify(schema, logLevelEnvKey) {
   const server = fastify()
   server.register(fastifyMia, {
     envSchema: schema,
@@ -16,7 +16,7 @@ async function setupFastify(schema, logLevelKey) {
         path: `${__dirname}/../.test.env`,
       },
     },
-    logLevelKey,
+    logLevelEnvKey,
   })
 
   return server
@@ -87,7 +87,7 @@ describe('Logger', () => {
           path: `${__dirname}/../.test.env`,
         },
       },
-      logLevelKey: 'LOG_LEVEL',
+      logLevelEnvKey: 'LOG_LEVEL',
       disableRequestLogging: true,
     })
 
@@ -122,7 +122,7 @@ describe('Logger', () => {
           path: `${__dirname}/../.test.env`,
         },
       },
-      logLevelKey: 'LOG_LEVEL',
+      logLevelEnvKey: 'LOG_LEVEL',
     })
 
     server.get('/', async(request, reply) => {

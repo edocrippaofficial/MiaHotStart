@@ -3,7 +3,7 @@
 const merge = require('deepmerge')
 
 const defaultOptions = {
-  logLevelKey: 'LOG_LEVEL',
+  logLevelEnvKey: 'LOG_LEVEL',
 
   gracefulShutdownSeconds: 10,
 
@@ -12,6 +12,12 @@ const defaultOptions = {
     userGroups: 'miausergroups',
     userProperties: 'miauserproperties',
     clientType: 'client-type',
+  },
+
+  httpClient: {
+    additionalHeadersToProxy: [],
+    disableDurationInterceptor: false,
+    disableLogsInterceptor: false,
   },
 
   disableSwagger: false,
