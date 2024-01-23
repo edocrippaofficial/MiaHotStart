@@ -84,6 +84,7 @@ function decorateWithLogs(axiosInstance, logger) {
         data: config.data,
         method: config.method,
       }, 'make call')
+      return config
     })
 }
 
@@ -97,8 +98,6 @@ function decorateResponseWithDuration(axiosInstance) {
     (config) => {
       config.metadata = { startTime: new Date() }
       return config
-    }, (error) => {
-      return Promise.reject(error)
     })
 
   axiosInstance.interceptors.response.use(
