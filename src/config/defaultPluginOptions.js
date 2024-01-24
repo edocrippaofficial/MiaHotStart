@@ -32,3 +32,5 @@ const defaultOptions = {
 module.exports = function mergeUserOptionsWithDefaults(userOptions) {
   return merge(defaultOptions, userOptions)
 }
+
+module.exports.defaultOptions = defaultOptions

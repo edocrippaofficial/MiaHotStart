@@ -31,9 +31,12 @@ const deepmerge = require('deepmerge')
  */
 
 module.exports = async function httpClient(fastify, opts) {
-  const { additionalHeadersToProxy, disableDurationInterceptor, disableLogsInterceptor } = opts?.httpClient
+  fastify.decorateRequest('getHttpClient', getHttpClientWithOptions(opts))
+}
 
-  function getHttpClient(baseUrl, baseOptions) {
+function getHttpClientWithOptions(opts) {
+  const { additionalHeadersToProxy, disableDurationInterceptor, disableLogsInterceptor } = opts?.httpClient
+  return function getHttpClient(baseUrl, baseOptions) {
     const platformHeadersToProxy = Object.values(opts.platformHeaders)
     const headersToProxy = platformHeadersToProxy.concat(additionalHeadersToProxy)
 
@@ -55,9 +58,8 @@ module.exports = async function httpClient(fastify, opts) {
 
     return axiosInstance
   }
-
-  fastify.decorateRequest('getHttpClient', getHttpClient)
 }
+module.exports.getHttpClientWithOptions = getHttpClientWithOptions
 
 function getHeadersFromRequest(request, additionalHeadersToProxy) {
   return additionalHeadersToProxy.reduce((acc, header) => {
