@@ -173,14 +173,10 @@ describe('HTTP Client', () => {
 
         const response = await axiosClient.get('/')
 
+        const logsString = passThrough.read().toString()
+        const logs = logsString.split('\n').filter((log) => log !== '')
+
         assert.deepStrictEqual(response.data, mockResponse, `The response is not set properly`)
-
-        const logs = passThrough
-          .read()
-          .toString()
-          .split('\n')
-          .filter((log) => log !== '')
-
         assert.equal(logs.length, 2, `Expected 2 logs (req/res), received: ${logs.length}`)
 
         const requestLog = JSON.parse(logs[0])
@@ -189,6 +185,33 @@ describe('HTTP Client', () => {
         const responseLog = JSON.parse(logs[1])
         assert.equal(responseLog.msg, 'response info', `The response log is not set properly`)
 
+        assert.ok(mockRemoteServer.isDone(), `The request is not made properly`)
+      })
+
+      it('should not print logs if the option `disableLogsInterceptor` is true', async() => {
+        const passThrough = new PassThrough()
+        const pinoToStream = Pino({ level: 'trace' }, passThrough)
+        const request = {
+          headers: {},
+          log: pinoToStream,
+        }
+
+        const opts = structuredClone(defaultOptions)
+        opts.httpClient.disableLogsInterceptor = true
+        const getHttpClient = getHttpClientWithOptions(opts).bind(request)
+        const axiosClient = getHttpClient(baseExternalUrl)
+
+        const mockResponse = { foo: 'bar' }
+        const mockRemoteServer = nock(baseExternalUrl)
+          .get('/')
+          .reply(200, mockResponse)
+
+        const response = await axiosClient.get('/')
+
+        const logs = passThrough.read()
+
+        assert.deepStrictEqual(response.data, mockResponse, `The response is not set properly`)
+        assert.equal(logs, null, `Expected no logs, but found a string`)
         assert.ok(mockRemoteServer.isDone(), `The request is not made properly`)
       })
     })
