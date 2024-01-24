@@ -2,7 +2,7 @@
 
 const fp = require('fastify-plugin')
 
-const pluginName = 'Mia Platform Plugin'
+const pluginName = 'fastify-mia'
 
 const {
   registerFastifyEnvs,
