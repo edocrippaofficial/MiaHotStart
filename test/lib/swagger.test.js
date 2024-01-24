@@ -10,7 +10,6 @@ async function setupFastify({ disableSwagger = false } = {}) {
   const server = fastify()
   server.register(fastifyMia, {
     envSchema: { type: 'object' },
-    fastifySwaggerOptions: { host: 'localhost' },
     disableSwagger,
   })
 

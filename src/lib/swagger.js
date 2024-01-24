@@ -24,7 +24,6 @@ module.exports = async function swagger(fastify, opts) {
 
   await fastify.register(fastifySwagger, {
     openapi: swaggerDefinition,
-    ...opts.fastifySwaggerOptions,
   })
 
   await fastify.register(fastifySwaggerUI, {})

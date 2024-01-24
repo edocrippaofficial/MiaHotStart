@@ -10,7 +10,6 @@ async function setupFastify({ disableMetrics = false } = {}) {
   const server = fastify()
   server.register(fastifyMia, {
     envSchema: { type: 'object' },
-    fastifySwaggerOptions: { host: 'localhost' },
     disableMetrics,
   })
 

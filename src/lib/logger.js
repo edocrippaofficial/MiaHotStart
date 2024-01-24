@@ -1,11 +1,11 @@
 'use strict'
 
 module.exports = async function logger(fastify, opts) {
-  fastify.log.level = getLogLevel(fastify, opts)
-
   if (opts.disableRequestLogging) {
     return
   }
+
+  fastify.log.level = getLogLevel(fastify, opts)
 
   fastify
     .addHook('onRequest', logIncomingRequest)
