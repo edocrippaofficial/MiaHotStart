@@ -94,9 +94,10 @@ function decorateWithLogs(axiosInstance, logger) {
       logger?.trace({
         baseURL: response.config.baseURL,
         url: response.config.url,
+        method: response.config.method,
         statusCode: response.status,
         headers: { ...response.headers.toJSON() },
-        payload: response.data,
+        data: response.data,
         duration: response.duration,
       }, 'response info')
       return response
@@ -106,9 +107,10 @@ function decorateWithLogs(axiosInstance, logger) {
         logger?.trace({
           baseURL: error.config.baseURL,
           url: error.config.url,
+          method: error.config.method,
           statusCode: error.response.status,
           headers: { ...error.response.headers.toJSON() },
-          payload: error.response.data,
+          data: error.response.data,
           duration: error.response.duration,
         }, 'response error')
       } else {
