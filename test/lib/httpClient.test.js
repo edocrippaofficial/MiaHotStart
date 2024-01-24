@@ -154,7 +154,7 @@ describe('HTTP Client', () => {
     })
 
     describe('Log decorator', () => {
-      it('should make requests log the request and the response', async() => {
+      it('should make requests and log the request and the response', async() => {
         const passThrough = new PassThrough()
         const pinoToStream = Pino({ level: 'trace' }, passThrough)
         const request = {
