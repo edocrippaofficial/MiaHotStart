@@ -88,6 +88,38 @@ function decorateWithLogs(axiosInstance, logger) {
       }, 'make call')
       return config
     })
+
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      logger?.trace({
+        baseURL: response.config.baseURL,
+        url: response.config.url,
+        statusCode: response.status,
+        headers: { ...response.headers.toJSON() },
+        payload: response.data,
+        duration: response.duration,
+      }, 'response info')
+      return response
+    },
+    (error) => {
+      if (error.response) {
+        logger?.trace({
+          baseURL: error.config.baseURL,
+          url: error.config.url,
+          statusCode: error.response.status,
+          headers: { ...error.response.headers.toJSON() },
+          payload: error.response.data,
+          duration: error.response.duration,
+        }, 'response error')
+      } else {
+        logger?.trace({
+          baseURL: error.config.baseURL,
+          url: error.config.url,
+          message: error.message,
+        }, 'request error')
+      }
+      return Promise.reject(error)
+    })
 }
 
 /**
@@ -112,6 +144,5 @@ function decorateResponseWithDuration(axiosInstance) {
       error.config.metadata.endTime = new Date()
       error.duration = error.config.metadata.endTime - error.config.metadata.startTime
       return Promise.reject(error)
-    }
-  )
+    })
 }

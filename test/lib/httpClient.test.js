@@ -11,6 +11,7 @@ const fastifyMia = require('../../src')
 const { getHttpClientWithOptions } = require('../../src/lib/httpClient')
 
 const { defaultOptions } = require('../../src/config/defaultPluginOptions')
+const { PassThrough } = require('node:stream')
 
 
 describe('HTTP Client', () => {
@@ -22,6 +23,8 @@ describe('HTTP Client', () => {
     nock.enableNetConnect()
   })
 
+  const baseExternalUrl = 'https://example.com'
+
   describe('getHttpClient', () => {
     it('should return an instance of Axios with baseUrl and the base options', async() => {
       const request = {
@@ -29,7 +32,6 @@ describe('HTTP Client', () => {
         log: Pino({ level: 'silent' }),
       }
 
-      const baseUrl = 'https://example.com'
       const baseOptions = {
         timeout: 1000,
       }
@@ -37,10 +39,10 @@ describe('HTTP Client', () => {
       const opts = structuredClone(defaultOptions)
       const getHttpClient = getHttpClientWithOptions(opts).bind(request)
 
-      const axiosClient = getHttpClient(baseUrl, baseOptions)
+      const axiosClient = getHttpClient(baseExternalUrl, baseOptions)
 
       assert.notEqual(axiosClient, undefined, `The HTTP client is not set properly`)
-      assert.equal(axiosClient.defaults.baseURL, baseUrl, `The base URL is not set properly`)
+      assert.equal(axiosClient.defaults.baseURL, baseExternalUrl, `The base URL is not set properly`)
       assert.equal(axiosClient.defaults.timeout, baseOptions.timeout, `The base options are not set properly`)
     })
 
@@ -54,7 +56,6 @@ describe('HTTP Client', () => {
         log: Pino({ level: 'silent' }),
       }
 
-      const baseUrl = 'https://example.com'
       const baseOptions = {
         headers: {
           platform: 'test',
@@ -65,7 +66,7 @@ describe('HTTP Client', () => {
       opts.httpClient.additionalHeadersToProxy = ['foo']
       const getHttpClient = getHttpClientWithOptions(opts).bind(request)
 
-      const axiosClient = getHttpClient(baseUrl, baseOptions)
+      const axiosClient = getHttpClient(baseExternalUrl, baseOptions)
 
       const expectedHeaders = {
         platform: 'test',
@@ -87,14 +88,12 @@ describe('HTTP Client', () => {
           log: Pino({ level: 'silent' }),
         }
 
-        const baseUrl = 'https://example.com'
-
         const opts = structuredClone(defaultOptions)
         const getHttpClient = getHttpClientWithOptions(opts).bind(request)
-        const axiosClient = getHttpClient(baseUrl)
+        const axiosClient = getHttpClient(baseExternalUrl)
 
         const mockResponse = { foo: 'bar' }
-        const mockRemoteServer = nock(baseUrl)
+        const mockRemoteServer = nock(baseExternalUrl)
           .get('/')
           .reply(200, mockResponse)
 
@@ -112,13 +111,12 @@ describe('HTTP Client', () => {
         }
 
         const errorResponse = { message: 'Response error' }
-        const baseUrl = 'https://example.com'
 
         const opts = structuredClone(defaultOptions)
         const getHttpClient = getHttpClientWithOptions(opts).bind(request)
-        const axiosClient = getHttpClient(baseUrl)
+        const axiosClient = getHttpClient(baseExternalUrl)
 
-        const mockRemoteServer = nock(baseUrl)
+        const mockRemoteServer = nock(baseExternalUrl)
           .get('/')
           .reply(400, errorResponse)
 
@@ -130,9 +128,70 @@ describe('HTTP Client', () => {
 
         assert.ok(mockRemoteServer.isDone(), `The request is not made properly`)
       })
+
+      it('should not record the duration if the option `disableDurationInterceptor` is true', async() => {
+        const request = {
+          headers: {},
+          log: Pino({ level: 'silent' }),
+        }
+
+        const opts = structuredClone(defaultOptions)
+        opts.httpClient.disableDurationInterceptor = true
+        const getHttpClient = getHttpClientWithOptions(opts).bind(request)
+        const axiosClient = getHttpClient(baseExternalUrl)
+
+        const mockResponse = { foo: 'bar' }
+        const mockRemoteServer = nock(baseExternalUrl)
+          .get('/')
+          .reply(200, mockResponse)
+
+        const response = await axiosClient.get('/')
+
+        assert.deepStrictEqual(response.data, mockResponse, `The response is not set properly`)
+        assert.equal(response.duration, undefined, `The duration set even though it should not be`)
+        assert.ok(mockRemoteServer.isDone(), `The request is not made properly`)
+      })
     })
 
-    describe('Log decorator', { todo: true })
+    describe('Log decorator', () => {
+      it('should make requests log the request and the response', async() => {
+        const passThrough = new PassThrough()
+        const pinoToStream = Pino({ level: 'trace' }, passThrough)
+        const request = {
+          headers: {},
+          log: pinoToStream,
+        }
+
+        const opts = structuredClone(defaultOptions)
+        const getHttpClient = getHttpClientWithOptions(opts).bind(request)
+        const axiosClient = getHttpClient(baseExternalUrl)
+
+        const mockResponse = { foo: 'bar' }
+        const mockRemoteServer = nock(baseExternalUrl)
+          .get('/')
+          .reply(200, mockResponse)
+
+        const response = await axiosClient.get('/')
+
+        assert.deepStrictEqual(response.data, mockResponse, `The response is not set properly`)
+
+        const logs = passThrough
+          .read()
+          .toString()
+          .split('\n')
+          .filter((log) => log !== '')
+
+        assert.equal(logs.length, 2, `Expected 2 logs (req/res), received: ${logs.length}`)
+
+        const requestLog = JSON.parse(logs[0])
+        assert.equal(requestLog.msg, 'make call', `The request log is not set properly`)
+
+        const responseLog = JSON.parse(logs[1])
+        assert.equal(responseLog.msg, 'response info', `The response log is not set properly`)
+
+        assert.ok(mockRemoteServer.isDone(), `The request is not made properly`)
+      })
+    })
 
     it('should return an error if the http request fails', async() => {
       const request = {
@@ -141,15 +200,14 @@ describe('HTTP Client', () => {
       }
 
       const errorMessage = 'Request error'
-      const baseUrl = 'https://example.com'
 
-      const mockRemoteServer = nock(baseUrl)
+      const mockRemoteServer = nock(baseExternalUrl)
         .get('/')
         .replyWithError(errorMessage)
 
       const opts = structuredClone(defaultOptions)
       const getHttpClient = getHttpClientWithOptions(opts).bind(request)
-      const axiosClient = getHttpClient(baseUrl)
+      const axiosClient = getHttpClient(baseExternalUrl)
 
       await assert.rejects(axiosClient.get('/'), (axiosError) => {
         assert.deepStrictEqual(axiosError.message, errorMessage, `The error message is not set properly`)
@@ -173,14 +231,13 @@ describe('HTTP Client', () => {
     it('should return an instance of Axios if called from the Fastify Request', async() => {
       const server = await setupFastify()
 
-      const baseUrl = 'https://example.com'
       const baseOptions = {
         responseType: 'text',
       }
 
       let axiosClient
       server.get('/', (request, reply) => {
-        axiosClient = request.getHttpClient(baseUrl, baseOptions)
+        axiosClient = request.getHttpClient(baseExternalUrl, baseOptions)
         reply.send('ok')
       })
 
@@ -190,7 +247,7 @@ describe('HTTP Client', () => {
       })
 
       assert.notEqual(axiosClient, undefined, `The HTTP client is not set properly`)
-      assert.equal(axiosClient.defaults.baseURL, baseUrl, `The base URL is not set properly`)
+      assert.equal(axiosClient.defaults.baseURL, baseExternalUrl, `The base URL is not set properly`)
       assert.equal(axiosClient.defaults.responseType, baseOptions.responseType, `The base options are not set properly`)
     })
   })
