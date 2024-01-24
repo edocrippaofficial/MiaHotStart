@@ -15,7 +15,12 @@ const schema = {
   },
 }
 
-async function setupFastify() {
+/**
+ * Returns the Fastify instance
+ * @param {Object} [envSchemaOptions] The schema options, used for testing
+ * @return {Promise<FastifyInstance | *>} The Fastify instance
+ */
+async function setupFastify(envSchemaOptions = {}) {
   defaultFastifyOptions.logger.redact.paths.push('MY_SECRET')
   const fastify = Fastify(defaultFastifyOptions)
 
@@ -23,7 +28,7 @@ async function setupFastify() {
 
   await fastify.register(fastifyMia, {
     envSchema: schema,
-    envSchemaOptions: {},
+    envSchemaOptions,
     logLevelEnvKey: 'LOG_LEVEL',
 
     customReadyRouteHandler: undefined,

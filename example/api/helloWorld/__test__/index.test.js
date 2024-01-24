@@ -1,18 +1,14 @@
 'use strict'
 
-const { describe, it, before } = require('node:test')
+const { describe, it } = require('node:test')
 const assert = require('node:assert/strict')
-const { testEnvs, loadTestEnvs } = require('./testUtils')
+const { testEnvs } = require('../../../__test__/testUtils')
 
-const { setupFastify } = require('../app')
+const { setupFastify } = require('../../../app')
 
 describe('Example', () => {
-  before(async() => {
-    loadTestEnvs()
-  })
-
-  it('should start the server', async() => {
-    const fastify = await setupFastify()
+  it('calls the hello API', async() => {
+    const fastify = await setupFastify(testEnvs)
     const response = await fastify.inject({
       method: 'GET',
       url: '/',
@@ -28,7 +24,7 @@ describe('Example', () => {
     )
     assert.deepEqual(
       JSON.parse(response.payload),
-      { 'foo': testEnvs.FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }], user: 'USER 1' },
+      { 'foo': fastify.envs.FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }], user: 'USER 1' },
       `The response body in not the one expected`
     )
   })
