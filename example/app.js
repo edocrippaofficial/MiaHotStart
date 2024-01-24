@@ -38,6 +38,12 @@ async function setupFastify() {
       clientType: 'client-type',
     },
 
+    httpClient: {
+      additionalHeadersToProxy: [],
+      disableDurationInterceptor: false,
+      disableLogsInterceptor: false,
+    },
+
     disableSwagger: false,
     disableMetrics: false,
     disableRequestLogging: false,
