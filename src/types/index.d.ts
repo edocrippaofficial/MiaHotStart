@@ -1,6 +1,5 @@
 import {FastifyPluginAsync} from 'fastify'
-import {AxiosHeaders, AxiosInstance} from "axios";
-import {AxiosRequestConfig, CreateAxiosDefaults, HeadersDefaults, RawAxiosRequestHeaders} from "axios/index";
+import {AxiosHeaders, AxiosInstance, CreateAxiosDefaults} from 'axios'
 
 export interface getUserId {
   // Returns the User ID from the request headers.
@@ -19,13 +18,9 @@ export interface getClientType {
   (): string
 }
 
-interface CreateAxiosOptions extends Omit<AxiosRequestConfig, 'headers'> {
-  headers?: RawAxiosRequestHeaders | AxiosHeaders | Partial<HeadersDefaults>;
-}
-
 export interface getHttpClient {
   // Returns the HTTP Client instance.
-  (baseUrl: string, baseOptions?: CreateAxiosOptions): AxiosInstance
+  (baseUrl: string, baseOptions?: CreateAxiosDefaults): AxiosInstance
 }
 
 export interface envs {
@@ -86,3 +81,4 @@ export interface PluginOptions {
 
 export const fastifyMia: FastifyPluginAsync<PluginOptions>
 export default fastifyMia
+
