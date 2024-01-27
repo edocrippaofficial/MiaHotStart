@@ -1,6 +1,8 @@
 import {FastifyPluginAsync} from 'fastify'
 import {AxiosInstance, CreateAxiosDefaults} from 'axios'
 
+export * from 'fastify-metrics'
+
 export interface getUserId {
   // Returns the User ID from the request headers.
   (): string

@@ -6,32 +6,35 @@ settings:
 
 dependencies:
   '@fastify/env':
-    specifier: ^4.3.0
+    specifier: '>= 4.3.0'
     version: 4.3.0
   '@fastify/formbody':
-    specifier: ^7.4.0
+    specifier: '>= 7.4.0'
     version: 7.4.0
   '@fastify/swagger':
-    specifier: ^8.12.2
+    specifier: '>= 8.12.2'
     version: 8.13.0
   '@fastify/swagger-ui':
-    specifier: ^2.1.0
+    specifier: '>= 2.1.0'
     version: 2.1.0
   axios:
-    specifier: ^1.6.5
-    version: 1.6.5
+    specifier: '>= 1.6.7'
+    version: 1.6.7
   deepmerge:
     specifier: ^4.3.1
     version: 4.3.1
   fastify-metrics:
-    specifier: ^10.5.0
-    version: 10.5.0(fastify@4.25.2)
+    specifier: '>= 10.6.0'
+    version: 10.6.0(fastify@4.25.2)
   fastify-plugin:
     specifier: ^4.5.1
     version: 4.5.1
   pino:
     specifier: '>= 8.0.0'
     version: 8.17.2
+  prom-client:
+    specifier: '>= 14.2.0'
+    version: 14.2.0
 
 devDependencies:
   '@mia-platform/eslint-config-mia':
@@ -318,8 +321,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /axios@1.6.5:
-    resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
+  /axios@1.6.7:
+    resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
     dependencies:
       follow-redirects: 1.15.5
       form-data: 4.0.0
@@ -615,8 +618,8 @@ packages:
   /fast-uri@2.3.0:
     resolution: {integrity: sha512-eel5UKGn369gGEWOqBShmFJWfq/xSJvsgDzgLYC845GneayWvXBf0lJCBn5qTABfewy1ZDPoaR5OZCP+kssfuw==}
 
-  /fastify-metrics@10.5.0(fastify@4.25.2):
-    resolution: {integrity: sha512-xxLN0o0U5GDGoBV2aWZnHYR10BgsHBTDC8kGWQPBoEPd8GnQskBA05xxnmCq3HCMYXvP/wXE0MUm6s6xYILRJA==}
+  /fastify-metrics@10.6.0(fastify@4.25.2):
+    resolution: {integrity: sha512-QIPncCnwBOEObMn+VaRhsBC1ox8qEsaiYF2sV/A1UbXj7ic70W8/HNn/hlEC2W8JQbBeZMx++o1um2fPfhsFDQ==}
     peerDependencies:
       fastify: '>=4'
     dependencies:

@@ -24,17 +24,17 @@
     "nock": "^13.5.0"
   },
   "dependencies": {
-    "@fastify/env": "^4.3.0",
-    "@fastify/formbody": "^7.4.0",
-    "@fastify/swagger": "^8.12.2",
-    "@fastify/swagger-ui": "^2.1.0",
-    "axios": "^1.6.5",
-    "deepmerge": "^4.3.1",
-    "fastify-metrics": "^10.5.0",
-    "fastify-plugin": "^4.5.1"
+    "deepmerge": "^4.3.1"
   },
   "peerDependencies": {
-    "pino": ">= 8.0.0"
+    "pino": ">= 8.0.0",
+    "axios": ">= 1.6.7",
+    "fastify-metrics": ">= 10.6.0",
+    "@fastify/env": ">= 4.3.0",
+    "@fastify/formbody": ">= 7.4.0",
+    "@fastify/swagger": ">= 8.12.2",
+    "@fastify/swagger-ui": ">= 2.1.0",
+    "fastify-plugin": "^4.5.1"
   },
   "engines": {
     "node": ">=20"

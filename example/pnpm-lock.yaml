@@ -10,7 +10,7 @@ dependencies:
     version: 4.25.2
   fastifymiaintegrations:
     specifier: file:../
-    version: file:..(fastify@4.25.2)(pino@8.17.2)
+    version: file:..(@fastify/env@4.3.0)(@fastify/formbody@7.4.0)(@fastify/swagger-ui@2.1.0)(@fastify/swagger@8.12.2)(axios@1.6.7)(fastify-metrics@10.6.0)(fastify-plugin@4.5.1)(pino@8.17.2)
 
 packages:
 
@@ -157,8 +157,8 @@ packages:
       - supports-color
     dev: false
 
-  /axios@1.6.5:
-    resolution: {integrity: sha512-Ii012v05KEVuUoFWmMW/UQv9aRIc3ZwkWDcM+h5Il8izZCtRVpDUfwpoFf7eOtajT3QiGR4yDUx7lPqHJULgbg==}
+  /axios@1.6.7:
+    resolution: {integrity: sha512-/hDJGff6/c7u0hDkvkGxR/oy6CbCs8ziCsC7SqmhjfozqiJGc8Z11wrv9z9lYfY4K8l+H9TpjcMDX0xOZmx+RA==}
     dependencies:
       follow-redirects: 1.15.5
       form-data: 4.0.0
@@ -309,8 +309,8 @@ packages:
     resolution: {integrity: sha512-eel5UKGn369gGEWOqBShmFJWfq/xSJvsgDzgLYC845GneayWvXBf0lJCBn5qTABfewy1ZDPoaR5OZCP+kssfuw==}
     dev: false
 
-  /fastify-metrics@10.5.0(fastify@4.25.2):
-    resolution: {integrity: sha512-xxLN0o0U5GDGoBV2aWZnHYR10BgsHBTDC8kGWQPBoEPd8GnQskBA05xxnmCq3HCMYXvP/wXE0MUm6s6xYILRJA==}
+  /fastify-metrics@10.6.0(fastify@4.25.2):
+    resolution: {integrity: sha512-QIPncCnwBOEObMn+VaRhsBC1ox8qEsaiYF2sV/A1UbXj7ic70W8/HNn/hlEC2W8JQbBeZMx++o1um2fPfhsFDQ==}
     peerDependencies:
       fastify: '>=4'
     dependencies:
@@ -725,25 +725,28 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  file:..(fastify@4.25.2)(pino@8.17.2):
+  file:..(@fastify/env@4.3.0)(@fastify/formbody@7.4.0)(@fastify/swagger-ui@2.1.0)(@fastify/swagger@8.12.2)(axios@1.6.7)(fastify-metrics@10.6.0)(fastify-plugin@4.5.1)(pino@8.17.2):
     resolution: {directory: .., type: directory}
     id: file:..
     name: fastifymiaintegrations
     engines: {node: '>=20'}
     peerDependencies:
+      '@fastify/env': '>= 4.3.0'
+      '@fastify/formbody': '>= 7.4.0'
+      '@fastify/swagger': '>= 8.12.2'
+      '@fastify/swagger-ui': '>= 2.1.0'
+      axios: '>= 1.6.7'
+      fastify-metrics: '>= 10.6.0'
+      fastify-plugin: ^4.5.1
       pino: '>= 8.0.0'
     dependencies:
       '@fastify/env': 4.3.0
       '@fastify/formbody': 7.4.0
       '@fastify/swagger': 8.12.2
       '@fastify/swagger-ui': 2.1.0
-      axios: 1.6.5
+      axios: 1.6.7
       deepmerge: 4.3.1
-      fastify-metrics: 10.5.0(fastify@4.25.2)
+      fastify-metrics: 10.6.0(fastify@4.25.2)
       fastify-plugin: 4.5.1
       pino: 8.17.2
-    transitivePeerDependencies:
-      - debug
-      - fastify
-      - supports-color
     dev: false
