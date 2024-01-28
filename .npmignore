@@ -1,2 +1,8 @@
 example
 test
+.idea
+.vscode
+coverage
+node_modules
+*.env
+*.log*
