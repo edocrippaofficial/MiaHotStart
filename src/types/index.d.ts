@@ -1,4 +1,5 @@
-import {FastifyPluginAsync} from 'fastify'
+import {FastifyLoggerOptions, FastifyPluginAsync} from 'fastify'
+import {PinoLoggerOptions} from "fastify/types/logger"
 import {AxiosInstance, CreateAxiosDefaults} from 'axios'
 
 export * from 'fastify-metrics'
@@ -84,3 +85,20 @@ export interface PluginOptions {
 export const fastifyMia: FastifyPluginAsync<PluginOptions>
 export default fastifyMia
 
+type DefaultFastifyServerOptions = {
+  // Sensible default redaction rules
+  // all first level properties in object or array of objects
+  // we don't want to see emails, usernames and passwords even if encrypted and/or hashed
+  logger: FastifyLoggerOptions & PinoLoggerOptions
+  // even after closing the server, it routes the incoming request as usual
+  return503OnClosing: boolean,
+  // use “legacy” header version with prefixed x- for better compatibility with existing enterprises infrastructures
+  requestIdHeader: string,
+  // set 30 seconds to plugins to load
+  pluginTimeout: number,
+  // virtually disable the max body size limit
+  bodyLimit: number,
+  // do not log requests and replies since we have a custom logger
+  disableRequestLogging: boolean,
+}
+export const defaultFastifyOptions: DefaultFastifyServerOptions
