@@ -4,48 +4,34 @@ import {AxiosInstance, CreateAxiosDefaults} from 'axios'
 
 export * from 'fastify-metrics'
 
-export interface getUserId {
-  // Returns the User ID from the request headers.
-  (): string
-}
-export interface getGroups {
-  // Returns the User Groups list from the request headers
-  (): string[]
-}
-export interface getUserProperties {
-  // Returns the User Properties object from the request headers
-  (): Object
-}
-export interface getClientType {
-  // Returns the Client Type from the request headers
-  (): string
-}
-
-export interface getHttpClient {
-  // Returns the HTTP Client instance.
-  (baseUrl: string, baseOptions?: CreateAxiosDefaults): AxiosInstance
-}
-
-export interface envs {
+export interface Envs {
   [x: string]: string;
 }
 
 declare module 'fastify' {
-  interface FastifyInstance {
+  export interface FastifyInstance {
     // The environment variables map as defined in the schema.
-    envs: envs
+    envs: Envs
   }
 
-  interface FastifyRequest {
+  export interface FastifyRequest {
     // The environment variables map as defined in the schema.
-    envs: envs,
+    envs: Envs,
 
-    getHttpClient: getHttpClient,
+    // Returns the HTTP Client instance.
+    getHttpClient(baseUrl: string, baseOptions?: CreateAxiosDefaults): AxiosInstance,
 
-    getUserId: getUserId,
-    getGroups: getGroups,
-    getUserProperties: getUserProperties,
-    getClientType: getClientType,
+    // Returns the User ID from the request headers.
+    getUserId(): string,
+
+    // Returns the User Groups list from the request headers
+    getGroups(): string[],
+
+    // Returns the User Properties object from the request headers
+    getUserProperties(): Object,
+
+    // Returns the Client Type from the request headers
+    getClientType(): string,
   }
 }
 
@@ -101,4 +87,5 @@ type DefaultFastifyServerOptions = {
   // do not log requests and replies since we have a custom logger
   disableRequestLogging: boolean,
 }
+// Very opinionated default options for the Fastify server instance
 export const defaultFastifyOptions: DefaultFastifyServerOptions
