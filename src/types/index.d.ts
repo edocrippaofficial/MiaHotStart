@@ -22,16 +22,16 @@ declare module 'fastify' {
     getHttpClient(baseUrl: string, baseOptions?: CreateAxiosDefaults): AxiosInstance,
 
     // Returns the User ID from the request headers.
-    getUserId(): string,
+    getUserId(): string | null,
 
     // Returns the User Groups list from the request headers
     getGroups(): string[],
 
     // Returns the User Properties object from the request headers
-    getUserProperties(): Object,
+    getUserProperties(): Object | null,
 
     // Returns the Client Type from the request headers
-    getClientType(): string,
+    getClientType(): string | null,
   }
 }
 
