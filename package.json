@@ -1,5 +1,5 @@
 {
-  "name": "fastifymiaintegrations",
+  "name": "fastify-mia-hot-start",
   "version": "0.1.0",
   "description": "The Mia Platform Fastify plugin",
   "main": "src/index.js",

@@ -2,7 +2,7 @@
 
 const fp = require('fastify-plugin')
 
-const pluginName = 'fastify-mia'
+const pluginName = 'fastify-mia-hot-start'
 
 const {
   registerFastifyEnvs,

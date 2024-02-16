@@ -29,7 +29,7 @@ describe('Fastify Swagger', () => {
     const swagger = fastifyInstance.swagger()
     assert.equal(
       swagger.info.title,
-      'fastifymiaintegrations',
+      'fastify-mia-hot-start',
       `The swagger info title is not set correctly`
     )
   })
@@ -46,7 +46,7 @@ describe('Fastify Swagger', () => {
     assert.equal(response.statusCode, 200)
     assert.equal(
       JSON.parse(response.payload).info.title,
-      'fastifymiaintegrations',
+      'fastify-mia-hot-start',
       `The received json is not correct`
     )
   })

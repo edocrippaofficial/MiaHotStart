@@ -8,7 +8,7 @@ dependencies:
   fastify:
     specifier: ^4.26.0
     version: 4.26.0
-  fastifymiaintegrations:
+  fastify-mia-hot-start:
     specifier: file:../
     version: file:..(@fastify/env@4.3.0)(@fastify/formbody@7.4.0)(@fastify/swagger-ui@2.1.0)(@fastify/swagger@8.12.2)(axios@1.6.7)(fastify-metrics@10.6.0)(fastify-plugin@4.5.1)(fastify@4.26.0)(pino@8.17.2)
 
@@ -728,7 +728,7 @@ packages:
   file:..(@fastify/env@4.3.0)(@fastify/formbody@7.4.0)(@fastify/swagger-ui@2.1.0)(@fastify/swagger@8.12.2)(axios@1.6.7)(fastify-metrics@10.6.0)(fastify-plugin@4.5.1)(fastify@4.26.0)(pino@8.17.2):
     resolution: {directory: .., type: directory}
     id: file:..
-    name: fastifymiaintegrations
+    name: fastify-mia-hot-start
     engines: {node: '>=20'}
     peerDependencies:
       '@fastify/env': '>= 4.3.0'
