@@ -20,7 +20,7 @@ Everything that cpl + lc39 gives you, plus:
 
 - You can turn off everything if you don't want it or want to implement it in another way
 
-- Run it like "node index.js", this is useful for tools like `clinicjs doctor` that need a node process and, of course, for code clearance
+- Run it like "node index.js", this is useful for tools like `clinicjs doctor` that need a node process and, of course, for code clarity
 
 - Easy typescript integration
 
