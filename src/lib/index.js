@@ -1,7 +1,7 @@
 'use strict'
 
-const registerFastifyEnvs = require('./envs')
-const registerFastifySwagger = require('./swagger')
+const registerEnvs = require('./envs')
+const registerSwagger = require('./swagger')
 const registerLogger = require('./logger')
 const registerMetrics = require('./metrics')
 const registerStatus = require('./status')
@@ -11,8 +11,8 @@ const registerPlatformDecorators = require('./decorators')
 const registerHttpClient = require('./httpClient')
 
 module.exports = {
-  registerFastifyEnvs,
-  registerFastifySwagger,
+  registerEnvs,
+  registerSwagger,
   registerLogger,
   registerMetrics,
   registerStatus,

@@ -5,8 +5,8 @@ const fp = require('fastify-plugin')
 const pluginName = 'fastify-mia-hot-start'
 
 const {
-  registerFastifyEnvs,
-  registerFastifySwagger,
+  registerEnvs,
+  registerSwagger,
   registerLogger,
   registerMetrics,
   registerStatus,
@@ -24,8 +24,8 @@ const {
 async function plugin(fastify, userOptions) {
   const opts = mergeUserOptionsWithDefaults(userOptions)
 
-  await registerFastifyEnvs(fastify, opts)
-  await registerFastifySwagger(fastify, opts)
+  await registerEnvs(fastify, opts)
+  await registerSwagger(fastify, opts)
   await registerLogger(fastify, opts)
   await registerMetrics(fastify, opts)
   await registerStatus(fastify, opts)
