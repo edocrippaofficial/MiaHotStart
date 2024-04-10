@@ -18,7 +18,7 @@ module.exports = async function shutdown(fastify, opts) {
 
     await sleep(opts.gracefulShutdownSeconds * 1000)
 
-    logger.info('Starting server closure after graceful shutdown')
+    logger.info('Starting server closure after graceful shutdown period')
     await fastify.close()
 
     logger.info('Server closed after graceful shutdown')

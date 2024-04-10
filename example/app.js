@@ -2,7 +2,7 @@
 
 const Fastify = require('fastify')
 const miaHotStart = require('fastify-mia-hot-start')
-const { defaultFastifyOptions } = require('fastify-mia-hot-start')
+const defaultFastifyOptions = require('./defaultFastifyOptions')
 
 const helloWorldRoute = require('./api/helloWorld')
 

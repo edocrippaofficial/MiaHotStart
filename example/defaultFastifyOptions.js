@@ -1,7 +1,5 @@
 'use strict'
 
-const pino = require('pino')
-
 // Sensible default redaction rules
 // all first level properties in object or array of objects
 // we don't want to see emails, usernames and passwords even if encrypted and/or hashed
@@ -18,9 +16,6 @@ const logger = {
     censor: '[REDACTED]',
   },
   timestamp: true,
-  serializers: {
-    error: pino.stdSerializers.err,
-  },
 }
 
 // 2,147,483,647 (2^31 − 1) stands for max SMI value (an internal optimization of V8).

@@ -18,7 +18,6 @@ const {
 
 const {
   mergeUserOptionsWithDefaults,
-  defaultFastifyOptions,
 } = require('./config')
 
 async function plugin(fastify, userOptions) {
@@ -41,4 +40,3 @@ module.exports = fp(plugin, {
 })
 
 module.exports.pluginName = pluginName
-module.exports.defaultFastifyOptions = defaultFastifyOptions
