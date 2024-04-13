@@ -1,7 +1,7 @@
 'use strict'
 
 const Fastify = require('fastify')
-const miaHotStart = require('fastify-mia-hot-start')
+const miaHotStart = require('mia-hot-start')
 const defaultFastifyOptions = require('./defaultFastifyOptions')
 
 const helloWorldRoute = require('./api/helloWorld')

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "fastify": "^4.26.0",
-    "fastify-mia-hot-start": "file:../"
+    "mia-hot-start": "file:../"
   },
   "author": "",
   "license": "ISC"

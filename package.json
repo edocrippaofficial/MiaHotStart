@@ -1,9 +1,10 @@
 {
-  "name": "fastify-mia-hot-start",
+  "name": "mia-hot-start",
   "version": "0.1.0",
   "description": "The Mia Platform Fastify plugin",
   "main": "src/index.js",
   "types": "src/types/index.d.ts",
+  "files": ["/src", "/test", "CHANGELOG.md"],
   "scripts": {
     "test": "npm run lint && npm run unit",
     "unit": "node --test --experimental-test-coverage test/*.test.js test/**/*.test.js",
