@@ -8,6 +8,8 @@
 
 A very opinionated Fastify Plugin to kickstart your project.
 
+It combines the utilities of [lc39](https://github.com/mia-platform/lc39) and [custom-plugin-lib](https://github.com/mia-platform/custom-plugin-lib) and gives them as an idiomatic Fastify plugin without custom types.
+
 ## Getting Started
 
 ### Install
