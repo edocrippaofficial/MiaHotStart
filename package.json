@@ -12,7 +12,7 @@
   "scripts": {
     "test": "npm run lint && npm run unit",
     "unit": "node --test --experimental-test-coverage test/*.test.js test/**/*.test.js",
-    "collect-coverage": "NODE_OPTIONS='--test-reporter lcov' npm run unit > coverage/lcov.info",
+    "collect-coverage": "mkdir coverage && NODE_OPTIONS='--test-reporter lcov' npm run unit > coverage/lcov.info",
     "lint": "eslint . --ignore-path=.gitignore",
     "example": "node example/index.js"
   },
