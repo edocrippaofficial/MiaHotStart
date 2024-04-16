@@ -3,6 +3,7 @@
 [![javascript style guide][standard-mia-svg]][standard-mia]
 [![NPM version][npmjs-svg]][npmjs-com]
 [![Coverage Status][coverall-svg]][coverall-io]
+![CI](https://github.com/EdoCrippaOfficial/mia-hot-start/actions/workflows/node.js.yml/badge.svg)
 
 
 A very opinionated Fastify Plugin to kickstart your project.
