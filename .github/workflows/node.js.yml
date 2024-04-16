@@ -6,7 +6,7 @@ on:
     branches:
       - main
 
-name: Test and Collect Coverage
+name: CI
 
 jobs:
 
