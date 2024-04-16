@@ -41,13 +41,13 @@ await fastify.register(MiaHotStart, {
 
 ## Functionalities
 The plugin provides you out of the box:
-- env schema handling via [fastify-env](...)
+- env schema handling via [fastify-env](https://github.com/fastify/fastify-env)
 - logging enhancement
-- metrics exposed to Prometheus via [fastify-metrics](...)
+- metrics exposed to Prometheus via [fastify-metrics](https://github.com/SkeLLLa/fastify-metrics)
 - graceful shutdown catching the Kubernetes signals
 - status routes for Kubernetes
-- OpenAPI spec generation and a Swagger Viewer via [fastify-swagger](..) and [fastify-swagger-ui](...)
-- an HTTP client based on [Axios](..) with pre-built handling of platform headers and logging
+- OpenAPI spec generation and a Swagger Viewer via [fastify-swagger](https://github.com/fastify/fastify-swagger) and [fastify-swagger-ui](https://github.com/fastify/fastify-swagger-ui)
+- an HTTP client based on [Axios](https://github.com/axios/axios) with pre-built handling of platform headers and logging
 - handling of platform headers via Fastify request decorators
 
 [standard-mia-svg]: https://img.shields.io/badge/code_style-standard--mia-orange.svg
