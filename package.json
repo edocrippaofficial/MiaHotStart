@@ -4,10 +4,15 @@
   "description": "The Mia Platform Fastify plugin",
   "main": "src/index.js",
   "types": "src/types/index.d.ts",
-  "files": ["/src", "/test", "CHANGELOG.md"],
+  "files": [
+    "/src",
+    "/test",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "test": "npm run lint && npm run unit",
     "unit": "node --test --experimental-test-coverage test/*.test.js test/**/*.test.js",
+    "collect-coverage": "mkdir coverage && NODE_OPTIONS='--test-reporter lcov' npm run unit > coverage/lcov.info",
     "lint": "eslint . --ignore-path=.gitignore",
     "example": "node example/index.js"
   },
@@ -27,15 +32,15 @@
     "deepmerge": "^4.3.1"
   },
   "peerDependencies": {
-    "pino": ">= 8.0.0",
-    "axios": ">= 1.6.7",
-    "fastify-metrics": ">= 10.6.0",
     "@fastify/env": ">= 4.3.0",
     "@fastify/formbody": ">= 7.4.0",
     "@fastify/swagger": ">= 8.12.2",
     "@fastify/swagger-ui": ">= 2.1.0",
+    "axios": ">= 1.6.7",
+    "fastify": ">= 4.26.0",
+    "fastify-metrics": ">= 10.6.0",
     "fastify-plugin": ">= 4.5.1",
-    "fastify": ">= 4.26.0"
+    "pino": ">= 8.0.0"
   },
   "engines": {
     "node": ">=20"
