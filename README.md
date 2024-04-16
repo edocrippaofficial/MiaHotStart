@@ -3,8 +3,7 @@
 [![javascript style guide][standard-mia-svg]][standard-mia]
 [![NPM version][npmjs-svg]][npmjs-com]
 [![Coverage Status][coverall-svg]][coverall-io]
-![CI](https://github.com/EdoCrippaOfficial/mia-hot-start/actions/workflows/node.js.yml/badge.svg)
-
+[![CI][ci-svg]][ci]
 
 A very opinionated Fastify Plugin to kickstart your project.
 
@@ -58,3 +57,5 @@ The plugin provides you out of the box:
 [npmjs-com]: https://www.npmjs.com/package/mia-hot-start
 [coverall-svg]: https://coveralls.io/repos/github/EdoCrippaOfficial/mia-hot-start/badge.svg
 [coverall-io]: https://coveralls.io/github/EdoCrippaOfficial/mia-hot-start
+[ci-svg]: https://github.com/EdoCrippaOfficial/mia-hot-start/actions/workflows/node.js.yml/badge.svg
+[ci]: https://github.com/mia-platform/custom-plugin-lib/actions
