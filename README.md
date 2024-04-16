@@ -49,7 +49,7 @@ The plugin provides you out of the box:
 - logging enhancement
 - metrics exposed to Prometheus via [fastify-metrics](https://github.com/SkeLLLa/fastify-metrics)
 - graceful shutdown catching the Kubernetes signals
-- status routes for Kubernetes
+- status routes for Kubernetes (`/-/ready`, `/-/healthz` and `/-/check-up`)
 - OpenAPI spec generation and a Swagger Viewer via [fastify-swagger](https://github.com/fastify/fastify-swagger) and [fastify-swagger-ui](https://github.com/fastify/fastify-swagger-ui)
 - an HTTP client based on [Axios](https://github.com/axios/axios) with pre-built handling of platform headers and logging
 - handling of platform headers via Fastify request decorators
