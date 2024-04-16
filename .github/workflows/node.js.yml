@@ -1,11 +1,17 @@
-on: ["push", "pull_request"]
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
-name: Test Coveralls
+name: Test and Collect Coverage
 
 jobs:
 
-  build:
-    name: Build
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
 
