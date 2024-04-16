@@ -58,4 +58,4 @@ The plugin provides you out of the box:
 [coverall-svg]: https://coveralls.io/repos/github/EdoCrippaOfficial/mia-hot-start/badge.svg
 [coverall-io]: https://coveralls.io/github/EdoCrippaOfficial/mia-hot-start
 [ci-svg]: https://github.com/EdoCrippaOfficial/mia-hot-start/actions/workflows/node.js.yml/badge.svg
-[ci]: https://github.com/mia-platform/custom-plugin-lib/actions
+[ci]: https://github.com/EdoCrippaOfficial/mia-hot-start/actions
