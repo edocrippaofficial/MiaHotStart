@@ -3,8 +3,27 @@
 This plugin registration accepts an options object which is used to customize the resulting behaviour.  
 This document describes the properties available in that options object.
 
+- [envSchema](#envschema)
+- [envSchemaOptions](#envSchemaOptions)
+- [logLevelEnvKey](#logLevelEnvKey)
+- [customReadyRouteHandler](#customReadyRouteHandler)
+- [customHealthzRouteHandler](#customHealthzRouteHandler)
+- [customCheckUpRouteHandler](#customCheckUpRouteHandler)
+- [gracefulShutdownSeconds](#gracefulShutdownSeconds)
+- [platformHeaders](#platformHeaders)
+- [httpClient](#httpClient)
+- [disableSwagger](#disableSwagger)
+- [disableMetrics](#disableMetrics)
+- [disableRequestLogging](#disableRequestLogging)
+- [disableStatusRoutes](#disableStatusRoutes)
+- [disableGracefulShutdown](#disableGracefulShutdown)
+- [disableFormBody](#disableFormBody)
+- [disablePlatformDecorators](#disablePlatformDecorators)
+
 ### `envSchema`
 - Required: true
+
+
 
 ### `envSchemaOptions`
 - Required: false
@@ -30,37 +49,37 @@ This document describes the properties available in that options object.
 ### `platformHeaders`
 - Required: false
 
-###### `userId`
-- Required: false
-- Default: `miauserid`
+It accepts an object with the following properties:
+- `userId`
+  - Required: false
+  - Default: `miauserid`
 
-###### `userGroups`
-- Required: false
-- Default: `miausergroups`
+- `userGroups`
+  - Required: false
+  - Default: `miausergroups`
 
+- `userProperties`
+  - Required: false
+  - Default: `miauserproperties`
 
-###### `userProperties`
-- Required: false
-- Default: `miauserproperties`
-
-
-###### `clientType`
-- Required: false
-- Default: `client-type`
+- `clientType`
+  - Required: false
+  - Default: `client-type`
 
 ### `httpClient`
 - Required: false
 
-#### `additionalHeadersToProxy`
-- Required: false
-- Default: `[]`
-#### `disableDurationInterceptor`
-- Required: false
-- Default: `false`
+- `additionalHeadersToProxy`
+  - Required: false
+  - Default: `[]`
 
-#### `disableLogsInterceptor`
-- Required: false
-- Default: `false`
+- `disableDurationInterceptor`
+  - Required: false
+  - Default: `false`
+
+- `disableLogsInterceptor`
+  - Required: false
+  - Default: `false`
 
 ### `disableSwagger`
 - Required: false
