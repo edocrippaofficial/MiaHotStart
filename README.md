@@ -20,7 +20,7 @@ npm install mia-hot-start
 
 ### Usage
 
-To use the plugin just register it after the instantiation of a Fastify instance
+To use the plugin, simply register it after creating an instance of Fastify:
 ```js
 import MiaHotStart from 'mia-hot-start'
 
