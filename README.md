@@ -22,6 +22,7 @@ npm install mia-hot-start
 ### Usage
 
 To use the plugin, simply register it after creating an instance of Fastify:
+
 ```js
 import MiaHotStart from 'mia-hot-start'
 
@@ -41,7 +42,9 @@ await fastify.register(MiaHotStart, {
 ```
 
 ## Functionalities
+
 The plugin provides you out of the box:
+
 - env schema handling via [fastify-env](https://github.com/fastify/fastify-env)
 - logging enhancement
 - metrics exposed to Prometheus via [fastify-metrics](https://github.com/SkeLLLa/fastify-metrics)
@@ -50,6 +53,16 @@ The plugin provides you out of the box:
 - OpenAPI spec generation and a Swagger Viewer via [fastify-swagger](https://github.com/fastify/fastify-swagger) and [fastify-swagger-ui](https://github.com/fastify/fastify-swagger-ui)
 - an HTTP client based on [Axios](https://github.com/axios/axios) with pre-built handling of platform headers and logging
 - handling of platform headers via Fastify request decorators
+
+## How To
+
+- [Initialize the Fastify instance](docs/fastify-init.md)
+- [Configure the plugin](docs/config.md)
+- [Use the envs in your handlers] TODO
+- [Expose a Prometheus metric] TODO
+- [Customize the status routes] TODO
+- [Create an HTTP client instance] TODO
+- [Use platform headers] TODO
 
 [standard-mia-svg]: https://img.shields.io/badge/code_style-standard--mia-orange.svg
 [standard-mia]: https://github.com/mia-platform/eslint-config-mia
