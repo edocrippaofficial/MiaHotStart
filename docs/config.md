@@ -117,8 +117,14 @@ function hanlder(request, reply) {
 - Required: false
 - Default: 10
 
+The time between the reception of a `SIGTERM` signal and the start of the operations for terminating the Fastify instance.  
+
+This is due to the Kubernetes ip tables update mechanism that can take some seconds to refresh. More info [here](https://blog.laputa.io/graceful-shutdown-in-kubernetes-85f1c8d586da).
+
 ### `platformHeaders`
 - Required: false
+
+An object containing the headers keys for known platform headers.
 
 It accepts an object with the following properties:
 - `userId`
