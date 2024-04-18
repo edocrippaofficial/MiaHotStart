@@ -47,7 +47,7 @@ fastifyInstance.get('/', (request, reply) => {
 
 To use a set of custom variables for testing follow this steps:
 
-- suppose to have a function that creates and returns the Fastify instance:
+Suppose to have a function that creates and returns the Fastify instance:
 
 `setupFastify.js`
 ```js
