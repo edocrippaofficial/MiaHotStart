@@ -20,6 +20,8 @@ This document describes the properties available in that options object.
 - [disableFormBody](#disableFormBody)
 - [disablePlatformDecorators](#disablePlatformDecorators)
 
+## List of configurations
+
 ### `envSchema`
 - Required: true
 
@@ -60,6 +62,7 @@ If the variable is set and is invalid (aka different from `error|warn|info|debug
 
 ### `customReadyRouteHandler`
 - Required: false
+- Default: `undefined`
 
 The Fastify handler used for the route `/-/ready`. It is used by Kubernetes to know if the service is ready to accept traffic, so reply accordingly to this.
 
@@ -79,6 +82,7 @@ function hanlder(request, reply) {
 
 ### `customHealthzRouteHandler`
 - Required: false
+- Default: `undefined`
 
 The Fastify handler used for the route `/-/healthz`. It is used by Kubernetes to know if the service is still alive and healthy, so reply accordingly to this.
 
@@ -98,6 +102,7 @@ function hanlder(request, reply) {
 
 ### `customCheckUpRouteHandler`
 - Required: false
+- Default: `undefined`
 
 The Fastify handler used for the route `/-/check-up`.
 
@@ -146,43 +151,99 @@ It accepts an object with the following properties:
 ### `httpClient`
 - Required: false
 
+An object containing the options for the httpClient instance returned by `request.getHttpClient()`.
+
 - `additionalHeadersToProxy`
   - Required: false
-  - Default: `[]`
+  - Default: `[]`  
+    The list of additional headers that the client will always automatically forward from the request.
 
 - `disableDurationInterceptor`
   - Required: false
-  - Default: `false`
+  - Default: `false`  
+    If set to `true` disable an interceptor that register the request duration.
 
 - `disableLogsInterceptor`
   - Required: false
-  - Default: `false`
+  - Default: `false`  
+    If set to `true` disable the logging of the outgoing HTTP request and replies.
 
 ### `disableSwagger`
 - Required: false
 - Default: `false`
 
+If set to `true` it disable the swagger generation and the route that expose the OpenAPI file and the Swagger UI.
+
 ### `disableMetrics`
 - Required: false
 - Default: `false`
+
+If set to `true` it disable the collection and the exposition of the metrics under the `/-/metrics` route.
 
 ### `disableRequestLogging`
 - Required: false
 - Default: `false`
 
+If set to `true` it disable the routes 
+
 ### `disableStatusRoutes`
 - Required: false
 - Default: `false`
+
+If set to `true` it disable the routes `/-/ready`, `/-/healthz` and `/-/check-up`.
 
 ### `disableGracefulShutdown`
 - Required: false
 - Default: `false`
 
+If set to `true` it disable the listener on the `SIGTERM` signal, defaulting to the standard Fastify handling of the event.
+
 ### `disableFormBody`
 - Required: false
 - Default: `false`
+
+If set to `true` it disable the `fastify-form-body` plugin.
 
 ### `disablePlatformDecorators`
 - Required: false
 - Default: `false`
 
+If set to `true` it disable the functions that decorate the request and return the values for standard platform headers: `getUserId()`, `getGroups()`, `getUserProperties()` and `getClientType()`.
+
+## Example
+
+This is an example of configuration:
+
+```js
+await fastify.register(miaHotStart, {
+  envSchema: schema,
+  envSchemaOptions: {},
+  logLevelEnvKey: 'LOG_LEVEL',
+
+  customReadyRouteHandler: undefined,
+  customHealthzRouteHandler: undefined,
+  customCheckUpRouteHandler: undefined,
+  gracefulShutdownSeconds: 10,
+
+  platformHeaders: {
+    userId: 'miauserid',
+    userGroups: 'miausergroups',
+    userProperties: 'miauserproperties',
+    clientType: 'client-type',
+  },
+
+  httpClient: {
+    additionalHeadersToProxy: [],
+    disableDurationInterceptor: false,
+    disableLogsInterceptor: false,
+  },
+
+  disableSwagger: false,
+  disableMetrics: false,
+  disableRequestLogging: false,
+  disableStatusRoutes: false,
+  disableGracefulShutdown: false,
+  disableFormBody: false,
+  disablePlatformDecorators: false,
+})
+```
