@@ -53,6 +53,7 @@ describe('HTTP Client', () => {
           miauserid: '1',
           dontForwardMe: 'secret',
         },
+        id: 'reqId',
         log: Pino({ level: 'silent' }),
       }
 
@@ -72,6 +73,8 @@ describe('HTTP Client', () => {
         platform: 'test',
         foo: 'bar',
         miauserid: '1',
+        'request-id': 'reqId',
+        'x-request-id': 'reqId',
       }
 
       Object.entries(expectedHeaders).forEach(([key, value]) => {

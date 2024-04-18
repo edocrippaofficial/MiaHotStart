@@ -41,6 +41,8 @@ function getHttpClientWithOptions(opts) {
     const headersToProxy = platformHeadersToProxy.concat(additionalHeadersToProxy)
 
     const additionalHeaders = getHeadersFromRequest(this, headersToProxy)
+    additionalHeaders['request-id'] = this.id
+    additionalHeaders['x-request-id'] = this.id
 
     const axiosInstance = axios.create({
       ...baseOptions,
