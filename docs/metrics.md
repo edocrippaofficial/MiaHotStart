@@ -22,7 +22,7 @@ const customMetric = new promClient.Counter({
 })
 ```
 
-Now you can utilize the metric as an instance of `Counter` in the `prom-client` library:
+Now you can utilize the metric as an instance of `Counter` of the `prom-client` library:
 
 ```js
 customMetric.labels({ foo: 'bar' }).inc(10)
