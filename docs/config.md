@@ -62,11 +62,10 @@ If the variable is set and is invalid (aka different from `error|warn|info|debug
 
 ### `customReadyRouteHandler`
 - Required: false
-- Default: `undefined`
 
 The Fastify handler used for the route `/-/ready`. It is used by Kubernetes to know if the service is ready to accept traffic, so reply accordingly to this.
 
-Example: if you are connected to a Kafka server link this reply to the status of the connection to the Kafka broker, so that Kubernetes will wait until the service is fully started before routing to it the traffic.
+Example: if you are connected to Kafka link this reply to the status of the connection to the Kafka broker, so that Kubernetes will wait until the service is fully started before routing to it the traffic.
 
 The default value is:
 
@@ -82,11 +81,10 @@ function hanlder(request, reply) {
 
 ### `customHealthzRouteHandler`
 - Required: false
-- Default: `undefined`
 
 The Fastify handler used for the route `/-/healthz`. It is used by Kubernetes to know if the service is still alive and healthy, so reply accordingly to this.
 
-Example: if you are connected to a Kafka server link this reply to the status of the connection to the Kafka broker, so that Kubernetes will kill the pod and recreate a new one if the connection drops.
+Example: if you are connected to Kafka link this reply to the status of the connection to the Kafka broker, so that Kubernetes will kill the pod and recreate a new one if the connection drops.
 
 The default value is:
 
@@ -102,7 +100,6 @@ function hanlder(request, reply) {
 
 ### `customCheckUpRouteHandler`
 - Required: false
-- Default: `undefined`
 
 The Fastify handler used for the route `/-/check-up`.
 

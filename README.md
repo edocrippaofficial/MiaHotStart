@@ -62,9 +62,8 @@ The plugin provides you out of the box:
 - [Configure the plugin](docs/config.md)
 - [Use the envs in your handlers](docs/envs.md)
 - [Expose a Prometheus metric](docs/metrics.md)
-- [Customize the status routes] TODO
 - [Create an HTTP client instance](docs/http-client.md)
-- [Use platform headers] TODO
+- [Get platform headers values] TODO
 
 [standard-mia-svg]: https://img.shields.io/badge/code_style-standard--mia-orange.svg
 [standard-mia]: https://github.com/mia-platform/eslint-config-mia
