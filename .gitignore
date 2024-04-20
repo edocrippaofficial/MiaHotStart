@@ -9,5 +9,5 @@ node_modules
 *.log*
 .yarn-integrity
 !default.env
-!test/.test.env
+!**/**/test.env
 .npmrc
