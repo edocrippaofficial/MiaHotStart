@@ -61,7 +61,7 @@ The plugin provides you out of the box:
 - [Initialize the Fastify instance](docs/fastify-init.md)
 - [Configure the plugin](docs/config.md)
 - [Use the envs in your handlers](docs/envs.md)
-- [Expose a Prometheus metric] TODO
+- [Expose a Prometheus metric](docs/metrics.md)
 - [Customize the status routes] TODO
 - [Create an HTTP client instance](docs/http-client.md)
 - [Use platform headers] TODO
