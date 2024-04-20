@@ -1,10 +1,12 @@
 on:
-  pull_request:
-    branches:
-      - main
   push:
     branches:
+      - master
       - main
+      - next
+  pull_request:
+    branches:
+      - '**'
 
 name: CI
 
