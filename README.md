@@ -63,7 +63,7 @@ The plugin provides you out of the box:
 - [Use the envs in your handlers](docs/envs.md)
 - [Expose a Prometheus metric](docs/metrics.md)
 - [Create an HTTP client instance](docs/http-client.md)
-- [Get platform headers values] TODO
+- [Get platform headers values](docs/plfatform-headers.md)
 
 [standard-mia-svg]: https://img.shields.io/badge/code_style-standard--mia-orange.svg
 [standard-mia]: https://github.com/mia-platform/eslint-config-mia
