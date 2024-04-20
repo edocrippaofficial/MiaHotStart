@@ -2,6 +2,8 @@
 
 The Fastify request is decorated with the function `getHttpClient()` that returns an instance of `Axios`.
 
+To know what are the options and what is the behaviour of this instance please check the [Axios documentation](https://axios-http.com/docs/intro).
+
 The signature of the function is the following:
 
 ```ts
