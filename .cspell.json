@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "language": "en",
+  "words": [
+    "healthz"
+  ],
+  "ignoreWords": [],
+  "dictionaries": [],
+  "flagWords": [],
+  "ignorePaths": [
+    "node_modules/**",
+    "**/pnpm-lock.yaml",
+    "**/*.png",
+    "**/img/**",
+    "**/*.zip",
+    "**/*.json",
+    "**/*.txt",
+    "**/*.svg"
+  ],
+  "allowCompoundWords": true
+}

@@ -40,7 +40,7 @@ const defaultFastifyOptions = {
   disableRequestLogging: true,
 }
 
-const fastidfy = Fastify(defaultFastifyOptions)
+const fastify = Fastify(defaultFastifyOptions)
 await fastify.register(MiaHotStart, {
   envSchema: schema,
   logLevelEnvKey: "LOG_LEVEL",
