@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node --test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "clean": "rm -rf node_modules"
   },
   "dependencies": {
     "fastify": "^4.26.0",

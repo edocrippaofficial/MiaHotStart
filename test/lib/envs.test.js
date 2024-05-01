@@ -36,7 +36,7 @@ describe('Fastify Env', () => {
   it('has correctly parsed the schema', async() => {
     const fastifyInstance = await setupFastify(schema)
     assert.equal(
-      fastifyInstance.envs.FOO,
+      fastifyInstance.getEnvs().FOO,
       'BAR',
       `The env is not correctly loaded`
     )
@@ -65,7 +65,7 @@ describe('Fastify Env', () => {
 
     let requestEnvs
     fastifyInstance.get('/', (request) => {
-      requestEnvs = request.envs
+      requestEnvs = request.getEnvs()
       return 'ok'
     })
     await fastifyInstance.inject({

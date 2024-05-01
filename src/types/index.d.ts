@@ -4,19 +4,15 @@ import {AxiosInstance, CreateAxiosDefaults} from 'axios'
 
 export * from 'fastify-metrics'
 
-export interface Envs {
-  [x: string]: string;
-}
-
 declare module 'fastify' {
   export interface FastifyInstance {
-    // The environment variables map as defined in the schema.
-    envs: Envs
+    // Returns the environment variables map as defined in the schema.
+    getEnvs<const E>(): E,
   }
 
   export interface FastifyRequest {
-    // The environment variables map as defined in the schema.
-    envs: Envs,
+    // Returns the environment variables map as defined in the schema.
+    getEnvs<const E>(): E,
 
     // Returns the HTTP Client instance.
     getHttpClient(baseUrl: string, baseOptions?: CreateAxiosDefaults): AxiosInstance,

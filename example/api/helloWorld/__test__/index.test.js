@@ -24,7 +24,7 @@ describe('Example', () => {
     )
     assert.deepEqual(
       JSON.parse(response.payload),
-      { 'foo': fastify.envs.FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }], user: 'USER 1' },
+      { 'foo': fastify.getEnvs().FOO, 'aa': 'vv', 'bb': [{ 'aa': 'aa' }], user: 'USER 1' },
       `The response body in not the one expected`
     )
   })

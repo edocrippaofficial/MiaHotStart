@@ -9,7 +9,7 @@ module.exports = async function handler(request, reply) {
 
   const result = {
     hello: request.query.name,
-    foo: request.envs.FOO,
+    foo: request.getEnvs().FOO,
     aa: 'vv',
     bb: [{ aa: 'aa' }],
     user: request.getUserId(),
