@@ -1,6 +1,6 @@
 # Plugin Configuration
 
-This plugin registration accepts an options object which is used to customize the resulting behaviour.  
+This plugin registration accepts an options object which is used to customize the resulting behavior.  
 This document describes the properties available in that options object.
 
 - [envSchema](#envschema)
@@ -70,7 +70,7 @@ Example: if you are connected to Kafka link this reply to the status of the conn
 The default value is:
 
 ```js
-function hanlder(request, reply) {
+function handler(request, reply) {
   reply.send({
     status: 'OK',
     name: package_name,
@@ -89,7 +89,7 @@ Example: if you are connected to Kafka link this reply to the status of the conn
 The default value is:
 
 ```js
-function hanlder(request, reply) {
+function handler(request, reply) {
   reply.send({
     status: 'OK',
     name: package_name,
@@ -106,7 +106,7 @@ The Fastify handler used for the route `/-/check-up`.
 The default value is:
 
 ```js
-function hanlder(request, reply) {
+function handler(request, reply) {
   reply.send({
     status: 'OK',
     name: package_name,

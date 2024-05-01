@@ -3,7 +3,7 @@
 const path = require('path')
 const { name, version } = require(path.join(process.cwd(), 'package.json'))
 
-const schema = require('../schema/statusRoute.shcema')
+const schema = require('../schema/statusRoute.schema')
 
 module.exports = async function status(fastify, opts) {
   if (opts.disableStatusRoutes) {

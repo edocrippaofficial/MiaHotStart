@@ -51,7 +51,7 @@ describe('HTTP Client', () => {
         headers: {
           foo: 'bar',
           miauserid: '1',
-          dontForwardMe: 'secret',
+          doNotForwardMe: 'secret',
         },
         id: 'reqId',
         log: Pino({ level: 'silent' }),
@@ -81,7 +81,7 @@ describe('HTTP Client', () => {
         assert.equal(axiosClient.defaults.headers[key], value, `The headers are not set properly`)
       })
 
-      assert.equal(axiosClient.defaults.headers.dontForwardMe, undefined)
+      assert.equal(axiosClient.defaults.headers.doNotForwardMe, undefined)
     })
 
     describe('Duration decorator', () => {

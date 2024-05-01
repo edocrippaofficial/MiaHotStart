@@ -9,7 +9,8 @@
     "unit": "node --test --experimental-test-coverage test/*.test.js test/**/*.test.js",
     "collect-coverage": "NODE_OPTIONS='--test-reporter lcov --test-reporter-destination=lcov.info' npm run unit",
     "lint": "eslint . --ignore-path=.gitignore",
-    "example": "node example/index.js"
+    "example": "node example/index.js",
+    "spellcheck": "cspell '**/*.md'"
   },
   "keywords": [
     "Fastify",
@@ -21,7 +22,8 @@
     "@mia-platform/eslint-config-mia": "^3.0.0",
     "eslint": "^8.56.0",
     "form-auto-content": "^3.2.1",
-    "nock": "^13.5.0"
+    "nock": "^13.5.0",
+    "cspell": "^8.7.0"
   },
   "dependencies": {
     "deepmerge": "^4.3.1"

@@ -24,7 +24,7 @@ async function setupFastify(envSchemaOptions = {}) {
   defaultFastifyOptions.logger.redact.paths.push('MY_SECRET')
   const fastify = Fastify(defaultFastifyOptions)
 
-  fastify.log.info({ MY_SECRET: 'shhh' })
+  fastify.log.info({ MY_SECRET: 'secret' })
 
   await fastify.register(miaHotStart, {
     envSchema: schema,
