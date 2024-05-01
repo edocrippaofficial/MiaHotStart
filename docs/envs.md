@@ -30,17 +30,28 @@ The schema must be a valid [json-schema](https://json-schema.org/).
 
 ## How to utilize the variables in your handlers
 
-The object containing all the environmental variables (both the ones specified and the ones with the `default` property) can be found by accessing the `env` property of the `request` (other than the `env` property of the Fastify instance).
+The object containing all the environmental variables (both the ones specified and the ones with the `default` property) can be found by calling the `getEnvs()` function of the `request` (other than the `getEnvs()` function of the Fastify instance).
 
 As an example, in your handler you can do something like this:
 
 ```js
 fastifyInstance.get('/', (request, reply) => {
-  const requestEnvs = request.envs
+  const requestEnvs = request.getEnvs()
   // Use the envs...
   
   reply.code(204).send()
 })
+```
+
+The response type of the function `getEnvs()` is generic so if you use Typescript you can pass to it the type of the returned object:
+```ts
+type Envs = {
+  FOO: string
+}
+const envs = request.getEnvs<Envs>()
+
+envs.FOO // will be a string
+envs.BAR // error: Property BAR does not exist on type Envs
 ```
 
 ## How to setup tests utilizing custom variables
