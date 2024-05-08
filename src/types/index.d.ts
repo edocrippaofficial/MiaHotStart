@@ -2,8 +2,6 @@ import {FastifyLoggerOptions, FastifyPluginAsync} from 'fastify'
 import {PinoLoggerOptions} from "fastify/types/logger"
 import {AxiosInstance, CreateAxiosDefaults} from 'axios'
 
-export * from 'fastify-metrics'
-
 declare module 'fastify' {
   export interface FastifyInstance {
     // Returns the environment variables map as defined in the schema.
