@@ -1,7 +1,7 @@
 {
   "name": "mia-hot-start",
   "version": "0.4.1",
-  "description": "The Mia Platform Fastify plugin",
+  "description": "A very opinionated Fastify Plugin to kickstart your project",
   "main": "src/index.js",
   "types": "src/types/index.d.ts",
   "scripts": {
@@ -12,10 +12,10 @@
     "example": "node example/index.js",
     "spellcheck": "cspell '**/*.md'"
   },
-  "keywords": [
-    "Fastify",
-    "Mia"
-  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EdoCrippaOfficial/mia-hot-start.git"
+  },
   "author": "Edoardo Crippa",
   "license": "Apache-2.0",
   "devDependencies": {
