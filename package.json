@@ -1,6 +1,6 @@
 {
   "name": "mia-hot-start",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "A very opinionated Fastify Plugin to kickstart your project",
   "main": "src/index.js",
   "types": "src/types/index.d.ts",
