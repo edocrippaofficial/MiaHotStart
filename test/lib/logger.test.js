@@ -142,8 +142,46 @@ describe('Logger', () => {
       .split('\n')
     assert.equal(logs.length, 3)
     assert.ok(
-      !logs.some((log) => log.includes('outgoing response')),
+      !logs.some(log => log.includes('outgoing response')),
       `The HTML response should not be logged`
     )
+  })
+
+  it('should log the response body even if the body parse fails', async() => {
+    const passThrough = new PassThrough()
+    const server = fastify({
+      logger: {
+        stream: passThrough,
+      },
+      disableRequestLogging: true,
+    })
+
+    server.register(fastifyMia, {
+      envSchema: schema,
+      envSchemaOptions: {
+        dotenv: {
+          path: `${__dirname}/../.test.env`,
+        },
+      },
+      logLevelEnvKey: 'LOG_LEVEL',
+    })
+
+    server.get('/', async(request, reply) => {
+      reply.header('content-type', 'application/json')
+      reply.send('not a json')
+    })
+
+    await server.ready()
+    await server.inject({
+      method: 'GET',
+      url: '/',
+    })
+
+    const logs = passThrough
+      .read()
+      .toString()
+      .split('\n')
+    assert.equal(logs.length, 4)
+    assert.ok(logs.some(log => log.includes('not a json')))
   })
 })
