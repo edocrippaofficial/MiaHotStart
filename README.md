@@ -1,7 +1,8 @@
 # Mia Hot Start
 
 [![javascript style guide][standard-mia-svg]][standard-mia]
-[![NPM version][npmjs-svg]][npmjs-com]
+[![NPM version][npmjs-v-svg]][npmjs-com]
+[![NPM downloads][npmjs-dm-svg]][npmjs-com]
 [![Coverage Status][coverall-svg]][coverall-io]
 [![CI][ci-svg]][ci]
 
@@ -67,7 +68,8 @@ The plugin provides you out of the box:
 
 [standard-mia-svg]: https://img.shields.io/badge/code_style-standard--mia-orange.svg
 [standard-mia]: https://github.com/mia-platform/eslint-config-mia
-[npmjs-svg]: https://img.shields.io/npm/v/mia-hot-start.svg?logo=npm&color=lightgreen
+[npmjs-v-svg]: https://img.shields.io/npm/v/mia-hot-start.svg?logo=npm&label=version&color=cb3837
+[npmjs-dm-svg]: https://img.shields.io/npm/dm/mia-hot-start.svg?logo=npm&color=cb3837
 [npmjs-com]: https://www.npmjs.com/package/mia-hot-start
 [coverall-svg]: https://coveralls.io/repos/github/EdoCrippaOfficial/mia-hot-start/badge.svg
 [coverall-io]: https://coveralls.io/github/EdoCrippaOfficial/mia-hot-start
