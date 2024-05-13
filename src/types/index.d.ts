@@ -1,5 +1,4 @@
-import {FastifyLoggerOptions, FastifyPluginAsync} from 'fastify'
-import {PinoLoggerOptions} from "fastify/types/logger"
+import {FastifyPluginAsync} from 'fastify'
 import {AxiosInstance, CreateAxiosDefaults} from 'axios'
 
 declare module 'fastify' {
