@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports = async function envs(fastify, opts) {
+module.exports = async function decorators(fastify, opts) {
   if (opts.disablePlatformDecorators) {
     return
   }
