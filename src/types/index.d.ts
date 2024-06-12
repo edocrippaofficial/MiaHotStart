@@ -50,6 +50,7 @@ export interface PluginOptions {
     additionalHeadersToProxy?: string[],
     disableDurationInterceptor?: boolean,
     disableLogsInterceptor?: boolean,
+    disableEnhancedErrorMessageInterceptor?: boolean
   }
 
   disableSwagger?: boolean,

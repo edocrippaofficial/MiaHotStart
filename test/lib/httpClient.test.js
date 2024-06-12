@@ -219,6 +219,59 @@ describe('HTTP Client', () => {
       })
     })
 
+    describe('Enhanced Error decorator', () => {
+      it('should return an error with the message from the response', async() => {
+        const request = {
+          headers: {},
+          log: Pino({ level: 'silent' }),
+        }
+
+        const opts = structuredClone(defaultOptions)
+        const getHttpClient = getHttpClientWithOptions(opts).bind(request)
+        const axiosClient = getHttpClient(baseExternalUrl)
+
+        const mockResponse = { message: 'foo' }
+        const mockRemoteServer = nock(baseExternalUrl)
+          .get('/')
+          .reply(404, mockResponse)
+
+        const expectedErrorMessage = 'Request failed with status code 404 with message foo'
+
+        await assert.rejects(axiosClient.get('/'), (axiosError) => {
+          assert.deepStrictEqual(axiosError.message, expectedErrorMessage, `The error message is not set properly`)
+          return true
+        })
+
+        assert.ok(mockRemoteServer.isDone(), `The request is not made properly`)
+      })
+
+      it('should not change the error message if the option `disableEnhancedErrorMessageInterceptor` is true', async() => {
+        const request = {
+          headers: {},
+          log: Pino({ level: 'silent' }),
+        }
+
+        const opts = structuredClone(defaultOptions)
+        opts.httpClient.disableEnhancedErrorMessageInterceptor = true
+        const getHttpClient = getHttpClientWithOptions(opts).bind(request)
+        const axiosClient = getHttpClient(baseExternalUrl)
+
+        const mockResponse = { message: 'foo' }
+        const mockRemoteServer = nock(baseExternalUrl)
+          .get('/')
+          .reply(404, mockResponse)
+
+        const expectedErrorMessage = 'Request failed with status code 404'
+
+        await assert.rejects(axiosClient.get('/'), (axiosError) => {
+          assert.deepStrictEqual(axiosError.message, expectedErrorMessage, `The error message is not set properly`)
+          return true
+        })
+
+        assert.ok(mockRemoteServer.isDone(), `The request is not made properly`)
+      })
+    })
+
     it('should return an error if the http request fails', async() => {
       const request = {
         headers: {},

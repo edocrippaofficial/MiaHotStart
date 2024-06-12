@@ -47,6 +47,7 @@ async function setupFastify(envSchemaOptions = {}) {
       additionalHeadersToProxy: [],
       disableDurationInterceptor: false,
       disableLogsInterceptor: false,
+      disableEnhancedErrorMessageInterceptor: false,
     },
 
     disableSwagger: false,

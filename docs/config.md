@@ -165,6 +165,11 @@ An object containing the options for the httpClient instance returned by `reques
   - Default: `false`  
     If set to `true` disable the logging of the outgoing HTTP request and replies.
 
+- `disableEnhancedErrorMessageInterceptor`
+  - Required: false
+  - Default: `false`  
+    If set to `true` disable the enhancement on the error message that forwards the response message.
+
 ### `disableSwagger`
 - Required: false
 - Default: `false`

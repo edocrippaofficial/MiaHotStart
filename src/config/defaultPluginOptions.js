@@ -18,6 +18,7 @@ const defaultOptions = {
     additionalHeadersToProxy: [],
     disableDurationInterceptor: false,
     disableLogsInterceptor: false,
+    disableEnhancedErrorMessageInterceptor: false,
   },
 
   disableSwagger: false,

@@ -33,6 +33,15 @@ The log level is set to `trace`.
 
 This interceptor adds the `duration` property to the Axios reply. It stores the milliseconds used by the HTTP request to complete.
 
+### Error message enhancement interceptors
+
+This interceptor modifies the error message when there is a response from the server.  
+In that case the error message becomes the original message plus the message returned from the server.
+
+> Example  
+> response: { statusCode: 404, message: "user not found" }  
+> error returned: { message: "Request failed with status code 404 with message user not found"
+
 ### Add custom interceptors
 
 If you want to add a custom interceptors to your instance of Axios just add to the instance returned by the function `getHttpClient` as explained in the [Axios documentation](https://axios-http.com/docs/interceptors).

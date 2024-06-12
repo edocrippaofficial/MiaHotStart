@@ -8,7 +8,12 @@ module.exports = async function httpClient(fastify, opts) {
 }
 
 function getHttpClientWithOptions(opts) {
-  const { additionalHeadersToProxy, disableDurationInterceptor, disableLogsInterceptor } = opts?.httpClient
+  const {
+    additionalHeadersToProxy,
+    disableDurationInterceptor,
+    disableLogsInterceptor,
+    disableEnhancedErrorMessageInterceptor,
+  } = opts?.httpClient
   return function getHttpClient(baseUrl, baseOptions) {
     const platformHeadersToProxy = Object.values(opts.platformHeaders)
     const headersToProxy = platformHeadersToProxy.concat(additionalHeadersToProxy)
@@ -29,6 +34,10 @@ function getHttpClientWithOptions(opts) {
 
     if (!disableLogsInterceptor) {
       decorateWithLogs(axiosInstance, this.log)
+    }
+
+    if (!disableEnhancedErrorMessageInterceptor) {
+      decorateResponseWithEnhancedErrorMessage(axiosInstance)
     }
 
     return axiosInstance
@@ -120,6 +129,24 @@ function decorateResponseWithDuration(axiosInstance) {
     (error) => {
       error.config.metadata.endTime = new Date()
       error.duration = error.config.metadata.endTime - error.config.metadata.startTime
+      return Promise.reject(error)
+    })
+}
+
+/**
+ * Enhance the error message with the message from the API response, if present
+ * @param {AxiosInstance} axiosInstance The Axios instance
+ * @returns {void} -
+ */
+function decorateResponseWithEnhancedErrorMessage(axiosInstance) {
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      return response
+    },
+    (error) => {
+      if (error?.response?.data?.message) {
+        error.message = `${error.message} with message ${error.response?.data?.message}`
+      }
       return Promise.reject(error)
     })
 }
