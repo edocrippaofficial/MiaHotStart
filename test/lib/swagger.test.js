@@ -57,7 +57,7 @@ describe('Fastify Swagger', () => {
 
     const response = await fastifyInstance.inject({
       method: 'GET',
-      url: '/documentation/static/index.html',
+      url: '/documentation',
     })
 
     assert.equal(response.statusCode, 200)
