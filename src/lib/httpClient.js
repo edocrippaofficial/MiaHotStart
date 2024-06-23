@@ -40,6 +40,8 @@ function getHttpClientWithOptions(opts) {
       decorateResponseWithEnhancedErrorMessage(axiosInstance)
     }
 
+    decorateResponseWithErrorStatusCode(axiosInstance)
+
     return axiosInstance
   }
 }
@@ -140,13 +142,26 @@ function decorateResponseWithDuration(axiosInstance) {
  */
 function decorateResponseWithEnhancedErrorMessage(axiosInstance) {
   axiosInstance.interceptors.response.use(
-    (response) => {
-      return response
-    },
+    (response) => { return response },
     (error) => {
       if (error?.response?.data?.message) {
         error.message = `${error.message} with message ${error.response?.data?.message}`
       }
+      return Promise.reject(error)
+    })
+}
+
+/**
+ * Enhance the error object with the statusCode from the API response, if present.
+ * Fastify will use this property to set the code of the reply.
+ * @param {AxiosInstance} axiosInstance The Axios instance
+ * @returns {void} -
+ */
+function decorateResponseWithErrorStatusCode(axiosInstance) {
+  axiosInstance.interceptors.response.use(
+    (response) => { return response },
+    (error) => {
+      error.statusCode = error.response?.status
       return Promise.reject(error)
     })
 }
