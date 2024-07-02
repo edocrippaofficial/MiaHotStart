@@ -7,12 +7,4 @@ module.exports = async function envs(fastify, opts) {
     schema: opts.envSchema,
     ...opts.envSchemaOptions,
   })
-
-  fastify.decorate('getEnvs', () => {
-    return fastify.config
-  })
-
-  fastify.decorateRequest('getEnvs', () => {
-    return fastify.config
-  })
 }

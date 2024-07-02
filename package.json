@@ -29,7 +29,7 @@
     "deepmerge": "^4.3.1"
   },
   "peerDependencies": {
-    "@fastify/env": ">= 4.3.0",
+    "@fastify/env": ">= 4.4.0",
     "@fastify/formbody": ">= 7.4.0",
     "@fastify/swagger": ">= 8.12.2",
     "@fastify/swagger-ui": ">= 4.0.0",
