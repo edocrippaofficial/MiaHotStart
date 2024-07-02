@@ -3,6 +3,12 @@
 const axios = require('axios')
 const deepmerge = require('deepmerge')
 
+const extraHeadersToProxy = [
+  'x-forwarded-for',
+  'x-forwarded-proto',
+  'x-forwarded-host',
+]
+
 module.exports = async function httpClient(fastify, opts) {
   fastify.decorateRequest('getHttpClient', getHttpClientWithOptions(opts))
 }
@@ -16,7 +22,11 @@ function getHttpClientWithOptions(opts) {
   } = opts?.httpClient
   return function getHttpClient(baseUrl, baseOptions) {
     const platformHeadersToProxy = Object.values(opts.platformHeaders)
-    const headersToProxy = platformHeadersToProxy.concat(additionalHeadersToProxy)
+    const headersToProxy = [
+      ...platformHeadersToProxy,
+      ...additionalHeadersToProxy,
+      ...extraHeadersToProxy,
+    ]
 
     const additionalHeaders = getHeadersFromRequest(this, headersToProxy)
     additionalHeaders['request-id'] = this.id
