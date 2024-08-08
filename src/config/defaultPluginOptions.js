@@ -28,6 +28,7 @@ const defaultOptions = {
   disableGracefulShutdown: false,
   disableFormBody: false,
   disablePlatformDecorators: false,
+  disableHealthyHooks: false,
 }
 
 module.exports = function mergeUserOptionsWithDefaults(userOptions) {

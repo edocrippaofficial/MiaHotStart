@@ -57,6 +57,7 @@ async function setupFastify(envSchemaOptions = {}) {
     disableGracefulShutdown: false,
     disableFormBody: false,
     disablePlatformDecorators: false,
+    disableHealthyHooks: false,
   })
 
   const promClient = fastify.metrics.client

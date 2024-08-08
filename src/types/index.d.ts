@@ -60,6 +60,7 @@ export interface PluginOptions {
   disableGracefulShutdown?: boolean,
   disableFormBody?: boolean,
   disablePlatformDecorators?: boolean,
+  disableHealthyHooks?: boolean
 }
 
 export const fastifyMia: FastifyPluginAsync<PluginOptions>

@@ -89,6 +89,7 @@ describe('Logger', () => {
       },
       logLevelEnvKey: 'LOG_LEVEL',
       disableRequestLogging: true,
+      disableHealthyHooks: true,
     })
 
     server.get('/', async(request, reply) => {
@@ -123,6 +124,7 @@ describe('Logger', () => {
         },
       },
       logLevelEnvKey: 'LOG_LEVEL',
+      disableHealthyHooks: true,
     })
 
     server.get('/', async(request, reply) => {
@@ -164,6 +166,7 @@ describe('Logger', () => {
         },
       },
       logLevelEnvKey: 'LOG_LEVEL',
+      disableHealthyHooks: true,
     })
 
     server.get('/', async(request, reply) => {

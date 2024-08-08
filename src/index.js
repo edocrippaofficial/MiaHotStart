@@ -13,6 +13,7 @@ const {
   registerShutdown,
   registerFormBody,
   registerPlatformDecorators,
+  registerHooks,
   registerHttpClient,
 } = require('./lib')
 
@@ -31,6 +32,7 @@ async function plugin(fastify, userOptions) {
   await registerShutdown(fastify, opts)
   await registerFormBody(fastify, opts)
   await registerPlatformDecorators(fastify, opts)
+  await registerHooks(fastify, opts)
   await registerHttpClient(fastify, opts)
 }
 

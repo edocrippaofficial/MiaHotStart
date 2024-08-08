@@ -8,6 +8,7 @@ const registerStatus = require('./status')
 const registerShutdown = require('./shutdown')
 const registerFormBody = require('./formbody')
 const registerPlatformDecorators = require('./decorators')
+const registerHooks = require('./hooks')
 const registerHttpClient = require('./httpClient')
 
 module.exports = {
@@ -19,5 +20,6 @@ module.exports = {
   registerShutdown,
   registerFormBody,
   registerPlatformDecorators,
+  registerHooks,
   registerHttpClient,
 }
