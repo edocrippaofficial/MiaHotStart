@@ -19,6 +19,7 @@ This document describes the properties available in that options object.
 - [disableGracefulShutdown](#disableGracefulShutdown)
 - [disableFormBody](#disableFormBody)
 - [disablePlatformDecorators](#disablePlatformDecorators)
+- [disableHealthyHooks](#disableHealthyHooks)
 
 ## List of configurations
 
@@ -158,59 +159,65 @@ An object containing the options for the httpClient instance returned by `reques
 - `disableDurationInterceptor`
   - Required: false
   - Default: `false`  
-    If set to `true` disable an interceptor that register the request duration.
+    If set to `true` disables an interceptor that register the request duration.
 
 - `disableLogsInterceptor`
   - Required: false
   - Default: `false`  
-    If set to `true` disable the logging of the outgoing HTTP request and replies.
+    If set to `true` disables the logging of the outgoing HTTP request and replies.
 
 - `disableEnhancedErrorMessageInterceptor`
   - Required: false
   - Default: `false`  
-    If set to `true` disable the enhancement on the error message that forwards the response message.
+    If set to `true` disables the enhancement on the error message that forwards the response message.
 
 ### `disableSwagger`
 - Required: false
 - Default: `false`
 
-If set to `true` it disable the swagger generation and the route that expose the OpenAPI file and the Swagger UI.
+If set to `true` it disables the swagger generation and the route that expose the OpenAPI file and the Swagger UI.
 
 ### `disableMetrics`
 - Required: false
 - Default: `false`
 
-If set to `true` it disable the collection and the exposition of the metrics under the `/-/metrics` route.
+If set to `true` it disables the collection and the exposition of the metrics under the `/-/metrics` route.
 
 ### `disableRequestLogging`
 - Required: false
 - Default: `false`
 
-If set to `true` it disable the routes 
+If set to `true` it disables the routes 
 
 ### `disableStatusRoutes`
 - Required: false
 - Default: `false`
 
-If set to `true` it disable the routes `/-/ready`, `/-/healthz` and `/-/check-up`.
+If set to `true` it disables the routes `/-/ready`, `/-/healthz` and `/-/check-up`.
 
 ### `disableGracefulShutdown`
 - Required: false
 - Default: `false`
 
-If set to `true` it disable the listener on the `SIGTERM` signal, defaulting to the standard Fastify handling of the event.
+If set to `true` it disables the listener on the `SIGTERM` signal, defaulting to the standard Fastify handling of the event.
 
 ### `disableFormBody`
 - Required: false
 - Default: `false`
 
-If set to `true` it disable the `fastify-form-body` plugin.
+If set to `true` it disables the `fastify-form-body` plugin.
 
 ### `disablePlatformDecorators`
 - Required: false
 - Default: `false`
 
-If set to `true` it disable the functions that decorate the request and return the values for standard platform headers: `getUserId()`, `getGroups()`, `getUserProperties()` and `getClientType()`.
+If set to `true` it disables the functions that decorate the request and return the values for standard platform headers: `getUserId()`, `getGroups()`, `getUserProperties()` and `getClientType()`.
+
+### `disableHealthyHooks`
+- Required: false
+- Default: `false`
+
+If set to `true` it disables the hooks that prints the startup messages when the server is ready and when it starts to accept traffic.
 
 ## Example
 
