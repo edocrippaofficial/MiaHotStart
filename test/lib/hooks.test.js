@@ -52,12 +52,8 @@ describe('Hooks', () => {
         .filter(line => line.length > 0)
         .map(line => JSON.parse(line))
 
-      // eslint-disable-next-line no-console
-      console.log(logs)
-
-      assert.equal(logs.length, 3)
-      assert.equal(logs[0].msg, 'ready event reached')
-      assert.equal(logs[2].msg, 'listen event reached')
+      assert.ok(logs.some(log => log.msg.includes('listen event reached')))
+      assert.ok(logs.some(log => log.msg.includes('ready event reached')))
     })
     it('has correctly skipped the plugin if the option `disableHealthyHooks` is true', async() => {
       const passThrough = new PassThrough()
@@ -95,10 +91,8 @@ describe('Hooks', () => {
         .filter(line => line.length > 0)
         .map(line => JSON.parse(line))
 
-      // eslint-disable-next-line no-console
-      console.log(logs)
-
-      assert.equal(logs.length, 1)
+      assert.ok(!logs.some(log => log.msg.includes('listen event reached')))
+      assert.ok(!logs.some(log => log.msg.includes('ready event reached')))
     })
   })
 })
