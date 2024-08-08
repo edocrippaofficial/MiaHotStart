@@ -51,6 +51,10 @@ describe('Hooks', () => {
         .split('\n')
         .filter(line => line.length > 0)
         .map(line => JSON.parse(line))
+
+      // eslint-disable-next-line no-console
+      console.log(logs)
+
       assert.equal(logs.length, 3)
       assert.equal(logs[0].msg, 'ready event reached')
       assert.equal(logs[2].msg, 'listen event reached')
@@ -90,6 +94,10 @@ describe('Hooks', () => {
         .split('\n')
         .filter(line => line.length > 0)
         .map(line => JSON.parse(line))
+
+      // eslint-disable-next-line no-console
+      console.log(logs)
+
       assert.equal(logs.length, 1)
     })
   })
