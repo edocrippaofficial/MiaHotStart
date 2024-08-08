@@ -159,17 +159,17 @@ An object containing the options for the httpClient instance returned by `reques
 - `disableDurationInterceptor`
   - Required: false
   - Default: `false`  
-    If set to `true` disables an interceptor that register the request duration.
+    If set to `true` it disables an interceptor that register the request duration.
 
 - `disableLogsInterceptor`
   - Required: false
   - Default: `false`  
-    If set to `true` disables the logging of the outgoing HTTP request and replies.
+    If set to `true` it disables the logging of the outgoing HTTP request and replies.
 
 - `disableEnhancedErrorMessageInterceptor`
   - Required: false
   - Default: `false`  
-    If set to `true` disables the enhancement on the error message that forwards the response message.
+    If set to `true` it disables the enhancement on the error message that forwards the response message.
 
 ### `disableSwagger`
 - Required: false
