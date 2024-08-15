@@ -5,6 +5,7 @@
 [![NPM downloads][npmjs-dm-svg]][npmjs-com]
 [![Coverage Status][coverall-svg]][coverall-io]
 [![CI][ci-svg]][ci]
+[![CodeQL][codeql-svg]][ci]
 
 A very opinionated Fastify Plugin to kickstart your project.
 
@@ -74,4 +75,5 @@ The plugin provides you out of the box:
 [coverall-svg]: https://coveralls.io/repos/github/edocrippaofficial/MiaHotStart/badge.svg
 [coverall-io]: https://coveralls.io/github/edocrippaofficial/MiaHotStart
 [ci-svg]: https://github.com/edocrippaofficial/MiaHotStart/actions/workflows/node.js.yml/badge.svg
+[codeql-svg]: https://github.com/edocrippaofficial/MiaHotStart/actions/workflows/codeql.yml/badge.svg
 [ci]: https://github.com/edocrippaofficial/MiaHotStart/actions
