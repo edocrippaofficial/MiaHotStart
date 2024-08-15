@@ -71,7 +71,7 @@ The plugin provides you out of the box:
 [npmjs-v-svg]: https://img.shields.io/npm/v/mia-hot-start.svg?logo=npm&label=version&color=cb3837
 [npmjs-dm-svg]: https://img.shields.io/npm/dm/mia-hot-start.svg?logo=npm&color=cb3837
 [npmjs-com]: https://www.npmjs.com/package/mia-hot-start
-[coverall-svg]: https://coveralls.io/repos/github/EdoCrippaOfficial/mia-hot-start/badge.svg
-[coverall-io]: https://coveralls.io/github/EdoCrippaOfficial/mia-hot-start
-[ci-svg]: https://github.com/EdoCrippaOfficial/mia-hot-start/actions/workflows/node.js.yml/badge.svg
-[ci]: https://github.com/EdoCrippaOfficial/mia-hot-start/actions
+[coverall-svg]: https://coveralls.io/repos/github/edocrippaofficial/mia-hot-start/badge.svg
+[coverall-io]: https://coveralls.io/github/edocrippaofficial/mia-hot-start
+[ci-svg]: https://github.com/edocrippaofficial/mia-hot-start/actions/workflows/node.js.yml/badge.svg
+[ci]: https://github.com/edocrippaofficial/mia-hot-start/actions
