@@ -37,7 +37,7 @@ async function plugin(fastify, userOptions) {
 }
 
 module.exports = fp(plugin, {
-  fastify: '4.x',
+  fastify: '>=4.x',
   name: pluginName,
 })
 
